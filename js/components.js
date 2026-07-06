@@ -1,18 +1,12 @@
 const NAV_ITEMS = [
   { id: "index", href: "index.html", label: "首頁" },
-  { id: "research", href: "research.html", label: "研究主題" },
-  { id: "publications", href: "publications.html", label: "成果發表" },
-  { id: "education", href: "education.html", label: "教學資源" },
+  { id: "research", href: "research.html", label: "研究主軸" },
+  { id: "projects", href: "projects.html", label: "研究計畫" },
   { id: "members", href: "members.html", label: "團隊成員" },
-  { id: "collaboration", href: "collaboration.html", label: "合作交流" },
-  { id: "resources", href: "resources.html", label: "開放資源" },
-  { id: "contact", href: "index.html#contact", label: "聯絡我們" }
+  { id: "publications", href: "publications.html", label: "成果發表" },
+  { id: "gallery", href: "gallery.html", label: "活動花絮" },
+  { id: "pi", href: "pi.html", label: "主持人" }
 ];
-
-const LOGO_SVG = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-  <path d="M12 21c-4.6-3.7-8-6.6-8-10.2C4 7.6 6.2 5.5 8.9 5.5c1.2 0 2.4.5 3.1 1.4.7-.9 1.9-1.4 3.1-1.4 2.7 0 4.9 2.1 4.9 5.3 0 3.6-3.4 6.5-8 10.2z" fill="currentColor" opacity=".9"/>
-  <path d="M11 9.5h2v2h2v2h-2v2h-2v-2H9v-2h2v-2z" fill="#fff"/>
-</svg>`;
 
 function initLayout(activePage) {
   const navLinks = NAV_ITEMS.map(
@@ -21,25 +15,26 @@ function initLayout(activePage) {
   ).join("");
 
   const header = document.createElement("header");
-  header.className = "site-header";
+  header.className = "site-header glass";
   header.innerHTML = `
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="回到首頁">
-        <span class="brand-mark">${LOGO_SVG}</span>
-        <span class="brand-text">
-          <strong>智慧醫療轉譯及創新實驗室</strong>
-          <small>Smart Health Translation and Innovation Lab</small>
-        </span>
-      </a>
-      <nav class="nav" aria-label="主要導覽">${navLinks}</nav>
-      <a class="btn btn-cta header-cta" href="index.html#contact">加入我們</a>
-      <button class="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false"><span></span></button>
-    </div>
-    <nav class="mobile-nav" aria-label="行動版導覽">${navLinks}</nav>
+    <a class="brand" href="index.html" aria-label="回到首頁">
+      <span class="brand-mark">SH</span>
+      <span class="brand-text">
+        <strong>智慧醫療轉譯及創新實驗室</strong>
+        <small>SMART HEALTH TRANSLATION &amp; INNOVATION LAB</small>
+      </span>
+    </a>
+    <nav class="nav" aria-label="主要導覽">${navLinks}</nav>
+    <button class="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false"><span></span></button>
   `;
   document.body.prepend(header);
 
-  const mobileNav = header.querySelector(".mobile-nav");
+  const mobileNav = document.createElement("nav");
+  mobileNav.className = "mobile-nav glass";
+  mobileNav.setAttribute("aria-label", "行動版導覽");
+  mobileNav.innerHTML = navLinks;
+  header.after(mobileNav);
+
   const toggle = header.querySelector(".menu-toggle");
   toggle.addEventListener("click", () => {
     const open = mobileNav.classList.toggle("open");
@@ -53,32 +48,24 @@ function initLayout(activePage) {
   const footer = document.createElement("footer");
   footer.className = "site-footer";
   footer.innerHTML = `
+    <div class="blob blob-violet" style="width:340px;height:340px;right:-120px;top:-140px;opacity:.25"></div>
     <div class="container">
       <div class="footer-inner">
-        <div class="footer-brand">
-          <a class="brand" href="index.html">
-            <span class="brand-mark">${LOGO_SVG}</span>
-            <span class="brand-text">
-              <strong>智慧醫療轉譯及創新實驗室</strong>
-              <small>Smart Health Translation and Innovation Lab</small>
-            </span>
-          </a>
-          <p>從精準評估到臨床轉譯，發展可解釋、可落地、可擴散的智慧醫療與心理健康創新。</p>
-        </div>
-        <div>
-          <h3>快速連結</h3>
-          <div class="footer-links">${NAV_ITEMS.slice(0, 7).map((i) => `<a href="${i.href}">${i.label}</a>`).join("")}</div>
-        </div>
         <div class="footer-contact">
-          <h3>聯絡資訊</h3>
+          <h3>智慧醫療轉譯及創新實驗室</h3>
+          <p class="mono-label" style="color:rgba(255,255,255,.4);margin:0 0 14px">SMART HEALTH TRANSLATION &amp; INNOVATION LAB</p>
           <p><strong>主持人：</strong>賀彥中 助理教授</p>
           <p><strong>單位：</strong>國防醫學大學護理學系</p>
           <p><strong>Email：</strong><a href="mailto:nokia3350g@gmail.com">nokia3350g@gmail.com</a></p>
         </div>
+        <div>
+          <h3>快速連結</h3>
+          <div class="footer-links">${NAV_ITEMS.map((i) => `<a href="${i.href}">${i.label}</a>`).join("")}</div>
+        </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span id="footer-year"></span> 智慧醫療轉譯及創新實驗室</span>
-        <span>Smart Health Translation and Innovation Lab</span>
+        <span>© <span id="footer-year"></span> Smart Health Translation and Innovation Lab</span>
+        <span>[MEASURE.MONITOR.TRANSLATE.IMPLEMENT]</span>
       </div>
     </div>
   `;
@@ -127,9 +114,4 @@ function openLightbox(src, caption) {
   img.alt = caption || "活動照片";
   lightboxEl.querySelector(".lightbox-caption").textContent = caption || "";
   lightboxEl.classList.add("open");
-}
-
-function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, (c) =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
