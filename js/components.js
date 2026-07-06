@@ -77,6 +77,12 @@ function initLayout(activePage) {
           <h3>快速連結</h3>
           <div class="footer-links">${NAV_ITEMS.map((i) => `<a href="${i.href}">${i.label}</a>`).join("")}</div>
         </div>
+        <div>
+          <h3>友好連結</h3>
+          <div class="footer-links friend-links">
+            <a href="https://bobyu89.github.io/sung-lab-website/index.html" target="_blank" rel="noopener">護理創新及專科訓練研究室<small>宋建美 助理教授</small></a>
+          </div>
+        </div>
       </div>
       <div class="footer-bottom">
         <span>© <span id="footer-year"></span> Smart Health Translation and Innovation Lab</span>
