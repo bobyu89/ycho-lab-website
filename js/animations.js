@@ -52,25 +52,7 @@ function initCounters() {
   els.forEach((el) => io.observe(el));
 }
 
-function initTimeline() {
-  const timelines = document.querySelectorAll(".timeline");
-  if (!timelines.length) return;
-  if (!motionOK || !("IntersectionObserver" in window)) {
-    timelines.forEach((el) => el.classList.add("in"));
-    return;
-  }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in");
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  timelines.forEach((el) => io.observe(el));
-}
-
-function initWave(canvas) {
+function initEcg(canvas) {
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
   let w = 0;
@@ -85,66 +67,50 @@ function initWave(canvas) {
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
   }
 
-  const ema = (x, phase) =>
-    h * 0.52 +
-    Math.sin(x * 0.045 + phase) * h * 0.2 +
-    Math.sin(x * 0.013 + phase * 0.6) * h * 0.14 +
-    Math.sin(x * 0.11 + phase * 1.7) * h * 0.05;
+  const PERIOD = 220;
 
-  const avg = (x, phase) =>
-    h * 0.55 + Math.sin(x * 0.012 + phase * 0.5) * h * 0.12;
+  function ecgY(x) {
+    const t = ((x % PERIOD) + PERIOD) % PERIOD;
+    const base = h * 0.62;
+    if (t < 90) return base;
+    if (t < 104) return base - (t - 90) * (h * 0.012);
+    if (t < 116) return base - h * 0.17 + (t - 104) * (h * 0.014);
+    if (t < 124) return base + (t - 116) * (h * 0.055);
+    if (t < 140) return base + h * 0.44 - (t - 124) * (h * 0.052);
+    if (t < 150) return base - h * 0.39 + (t - 140) * (h * 0.039);
+    if (t < 170) return base;
+    if (t < 190) return base - Math.sin(((t - 170) / 20) * Math.PI) * h * 0.1;
+    return base;
+  }
 
-  function drawFrame(phase) {
+  function drawFrame(offset) {
     ctx.clearRect(0, 0, w, h);
-
     ctx.beginPath();
-    for (let x = 0; x <= w; x += 3) {
-      const y = ema(x, phase);
+    for (let x = 0; x <= w; x += 2) {
+      const y = ecgY(x + offset);
       x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
     }
-    ctx.strokeStyle = "#00e3e3";
-    ctx.lineWidth = 2.2;
+    ctx.strokeStyle = "#e85d8a";
+    ctx.lineWidth = 2.4;
     ctx.lineCap = "round";
-    ctx.shadowColor = "rgba(0,227,227,.55)";
-    ctx.shadowBlur = 10;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    ctx.beginPath();
-    ctx.setLineDash([5, 6]);
-    for (let x = 0; x <= w; x += 4) {
-      const y = avg(x, phase);
-      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    }
-    ctx.strokeStyle = "#6a6aff";
-    ctx.lineWidth = 1.6;
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    const px = w * 0.78;
-    ctx.beginPath();
-    ctx.arc(px, ema(px, phase), 4.5, 0, Math.PI * 2);
-    ctx.fillStyle = "#ffffff";
-    ctx.strokeStyle = "#00e3e3";
-    ctx.lineWidth = 3;
-    ctx.fill();
+    ctx.lineJoin = "round";
     ctx.stroke();
   }
 
   resize();
   window.addEventListener("resize", () => {
     resize();
-    if (!motionOK) drawFrame(1.4);
+    if (!motionOK) drawFrame(0);
   });
 
   if (!motionOK) {
-    drawFrame(1.4);
+    drawFrame(0);
     return;
   }
-  let phase = 0;
+  let offset = 0;
   (function loop() {
-    phase += 0.016;
-    drawFrame(phase);
+    offset += 0.7;
+    drawFrame(offset);
     requestAnimationFrame(loop);
   })();
 }

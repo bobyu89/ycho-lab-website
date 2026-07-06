@@ -6,6 +6,14 @@ const CONFIG = {
   DRIVE_API_KEY: ""    // Google Cloud Console 申請的 API 金鑰
 };
 
+/* 首頁統計數字（更新論文/計畫/成員時改這裡） */
+const STATS = {
+  journal: 7,
+  conference: 5,
+  projects: 4,
+  members: 3
+};
+
 const FALLBACK_NEWS = [
   { date: "2026-01-01", category: "公告", content: "「照護產業科技化指數與指引研究案」（經濟部產業發展署／資策會）正式啟動。", link: "" },
   { date: "2025-08-01", category: "公告", content: "國科會計畫「基於移動平均理論與生態瞬時評估法之失樂感個人化動態監測系統發展與應用」開始執行。", link: "" },
@@ -35,9 +43,9 @@ const FALLBACK_EVENTS = [
 
 function makePlaceholder(n) {
   const hues = [
-    ["#00e3e3", "#6a6aff"], ["#6a6aff", "#00e3e3"], ["#8e8e8e", "#00e3e3"],
-    ["#00e3e3", "#8e8e8e"], ["#6a6aff", "#8e8e8e"], ["#8e8e8e", "#6a6aff"],
-    ["#00b8b8", "#5050e0"], ["#5050e0", "#00b8b8"]
+    ["#e85d8a", "#f59b53"], ["#f59b53", "#e85d8a"], ["#e85d8a", "#ffd9e6"],
+    ["#ffd9e6", "#f59b53"], ["#d6336c", "#f59b53"], ["#f59b53", "#d6336c"],
+    ["#e85d8a", "#ffedd9"], ["#ffedd9", "#e85d8a"]
   ];
   const [c1, c2] = hues[n % hues.length];
   const heights = [300, 380, 260, 340, 300, 420, 280, 360];
@@ -47,10 +55,10 @@ function makePlaceholder(n) {
       <stop offset="0" stop-color="${c1}" stop-opacity=".25"/>
       <stop offset="1" stop-color="${c2}" stop-opacity=".35"/>
     </linearGradient></defs>
-    <rect width="400" height="${hgt}" fill="#eef0f3"/>
+    <rect width="400" height="${hgt}" fill="#fdeef2"/>
     <rect width="400" height="${hgt}" fill="url(#g)"/>
-    <text x="50%" y="50%" text-anchor="middle" fill="rgba(30,36,39,.35)"
-      font-family="monospace" font-size="15">PHOTO ${String(n + 1).padStart(2, "0")}</text>
+    <text x="50%" y="50%" text-anchor="middle" fill="rgba(214,51,108,.45)"
+      font-family="sans-serif" font-weight="bold" font-size="15">PHOTO ${String(n + 1).padStart(2, "0")}</text>
   </svg>`;
   return "data:image/svg+xml," + encodeURIComponent(svg);
 }

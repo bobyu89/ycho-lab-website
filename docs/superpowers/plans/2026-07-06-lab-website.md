@@ -1,5 +1,7 @@
 # 實驗室網站改版 Implementation Plan
 
+> **2026-07-06 更新：** 視覺與頁面架構改依《2026-07-06-pink-nursing-redesign-design.md》（粉色護理風・五層架構・8 頁）執行；本計畫中的霧灰/液態玻璃視覺描述作廢，技術骨架（資料層、元件化、動畫模組、驗收流程）不變。頁面清單改為：index / research（含計畫）/ publications / education / members（含主持人）/ collaboration（含照片牆）/ resources；動畫將 EMA 波形改為心電圖線。
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 依 2026-07-06 設計文件建置多頁式實驗室網站（霧灰 + 液態玻璃 + 微動畫），含 Google 試算表/雲端資料串接與降級。

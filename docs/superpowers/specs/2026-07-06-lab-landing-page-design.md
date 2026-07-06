@@ -1,7 +1,7 @@
 # 智慧醫療轉譯及創新實驗室 — 網站改版設計文件
 
 日期：2026-07-06
-狀態：**已作廢**——使用者於同日改採粉色護理風設計，見《2026-07-06-pink-nursing-redesign-design.md》；本文件僅保留技術決策參考。
+狀態：待使用者審查
 現行網站：https://ycho-smart-health-lab.web.app/（原始碼備份已存於 scratchpad：site.html / styles.css / script.js）
 
 ## 1. 目標
