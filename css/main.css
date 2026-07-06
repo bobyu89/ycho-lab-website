@@ -570,6 +570,12 @@ h1, h2, h3 { line-height: 1.25; margin: 0; }
   font-weight: 800;
   color: rgba(30, 36, 39, 0.22);
 }
+.pi-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
 .pi-body p { color: #4d565b; }
 .pi-body strong { color: var(--ink); }
 .pi-facts { list-style: none; margin: 22px 0 0; padding: 0; }
