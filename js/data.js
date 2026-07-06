@@ -1,9 +1,9 @@
 /* 內容後台設定：填入後即自動串接，留空則顯示內建備用資料。
    設定步驟見 README-維護說明.md */
 const CONFIG = {
-  SHEET_ID: "",        // Google 試算表 ID（檔案 > 發布到網路 後填入）
-  DRIVE_FOLDER_ID: "", // 照片雲端資料夾 ID（知道連結者可檢視）
-  DRIVE_API_KEY: ""    // Google Cloud Console 申請的 API 金鑰
+  SHEET_ID: "1061JGstTRdL_tsDVdKwjhnx8H2rvTc5DaLfXpU6WbK8", // 雲端「網站後台-消息與活動」試算表
+  DRIVE_FOLDER_ID: "1Vi93_Xw7oruDRUguRs4q-mFFfYGNtbAD",      // 雲端「實驗室網站/活動照片」資料夾
+  DRIVE_API_KEY: ""    // Google Cloud Console 申請的 API 金鑰（照片串接需要）
 };
 
 const FALLBACK_NEWS = [
@@ -61,9 +61,9 @@ const FALLBACK_PHOTOS = Array.from({ length: 8 }, (_, i) => ({
   caption: "實驗室活動照片（雲端串接後自動更新）"
 }));
 
-async function fetchSheet(sheetName) {
+async function fetchSheet(selector) {
   if (!CONFIG.SHEET_ID) throw new Error("no sheet configured");
-  const url = `https://docs.google.com/spreadsheets/d/${CONFIG.SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheetName)}`;
+  const url = `https://docs.google.com/spreadsheets/d/${CONFIG.SHEET_ID}/gviz/tq?tqx=out:json&${selector}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`sheet http ${res.status}`);
   const text = await res.text();
@@ -95,7 +95,14 @@ function normalizeDate(value) {
 
 async function fetchNews() {
   try {
-    const rows = await fetchSheet("news");
+    /* 優先讀名為 news 的工作表；還沒改名時退回第一個分頁 */
+    let rows;
+    try {
+      rows = await fetchSheet("sheet=news");
+      if (!rows.some((r) => r.content)) throw new Error("empty news sheet");
+    } catch {
+      rows = await fetchSheet("gid=0");
+    }
     const items = rows
       .filter((r) => r.content)
       .map((r) => ({
@@ -113,7 +120,7 @@ async function fetchNews() {
 
 async function fetchEvents() {
   try {
-    const rows = await fetchSheet("events");
+    const rows = await fetchSheet("sheet=events");
     const items = rows
       .filter((r) => r.title)
       .map((r) => ({
