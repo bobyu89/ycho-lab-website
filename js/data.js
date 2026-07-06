@@ -3,7 +3,7 @@
 const CONFIG = {
   SHEET_ID: "1061JGstTRdL_tsDVdKwjhnx8H2rvTc5DaLfXpU6WbK8", // 雲端「網站後台-消息與活動」試算表
   DRIVE_FOLDER_ID: "1Vi93_Xw7oruDRUguRs4q-mFFfYGNtbAD",      // 雲端「實驗室網站/活動照片」資料夾
-  DRIVE_API_KEY: ""    // Google Cloud Console 申請的 API 金鑰（照片串接需要）
+  DRIVE_API_KEY: "AIzaSyD6XJELxWdiiCTPNgHiJrT-09n-X6clCYc" // 限制 referrer：bobyu89.github.io、localhost:8788
 };
 
 const FALLBACK_NEWS = [
