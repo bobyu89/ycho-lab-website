@@ -25,8 +25,8 @@ const FALLBACK_EVENTS = [
     pinned: true
   },
   {
-    date: "2025-08-01",
-    title: "國科會失樂感個人化動態監測計畫執行中",
+    date: "2026-07-01",
+    title: "國科會失樂感個人化動態監測延續計劃",
     description: "以精準及預防精神醫學為方向，結合移動平均理論與生態瞬時評估（EMA），發展跨裝置失樂感趨勢視覺化與個人化監測方法。",
     image: "",
     pinned: true
