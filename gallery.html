@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>活動花絮 | 智慧醫療轉譯及創新實驗室</title>
+  <meta name="description" content="智慧醫療轉譯及創新實驗室活動花絮：研討會、實驗室活動與臨床場域的紀錄。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <main>
+    <section class="page-hero">
+      <div class="blob blob-cyan" style="width:340px;height:340px;top:-90px;right:10%"></div>
+      <div class="blob blob-violet" style="width:280px;height:280px;bottom:-110px;left:-70px"></div>
+      <div class="container">
+        <p class="mono-label">[FIELD.MOMENTS]</p>
+        <h1>活動花絮</h1>
+        <p>研討會、實驗室活動與臨床場域的紀錄。照片同步自實驗室雲端相簿，點擊可放大檢視。</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:40px">
+      <div class="container">
+        <div class="gallery-masonry" id="gallery-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/components.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    initLayout("gallery");
+
+    async function boot() {
+      const photos = await fetchPhotos(0);
+      const grid = document.getElementById("gallery-grid");
+      photos.forEach((p, i) => {
+        const fig = document.createElement("figure");
+        fig.className = "photo-card";
+        fig.style.margin = "0 0 16px";
+        fig.innerHTML = `
+          <img src="${p.thumb}" alt="${escapeHtmlGallery(p.caption)}" loading="lazy">
+          <span class="fig-tag">Fig.${String(i + 1).padStart(2, "0")}</span>
+          <figcaption class="photo-caption">${escapeHtmlGallery(p.caption)}</figcaption>`;
+        fig.addEventListener("click", () => openLightbox(p.src, p.caption));
+        grid.append(fig);
+      });
+      initReveal();
+    }
+
+    function escapeHtmlGallery(str) {
+      return String(str).replace(/[&<>"']/g, (c) =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    boot();
+  </script>
+</body>
+</html>
