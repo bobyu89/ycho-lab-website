@@ -1,9 +1,10 @@
 /* 內容後台設定：填入後即自動串接，留空則顯示內建備用資料。
    設定步驟見 README-維護說明.md */
 const CONFIG = {
-  SHEET_ID: "1061JGstTRdL_tsDVdKwjhnx8H2rvTc5DaLfXpU6WbK8", // 雲端「網站後台-消息與活動」試算表
-  DRIVE_FOLDER_ID: "1Vi93_Xw7oruDRUguRs4q-mFFfYGNtbAD",      // 雲端「實驗室網站/活動照片」資料夾
-  DRIVE_API_KEY: "AIzaSyD6XJELxWdiiCTPNgHiJrT-09n-X6clCYc" // 限制 referrer：bobyu89.github.io、localhost:8788
+  SHEET_ID: "1061JGstTRdL_tsDVdKwjhnx8H2rvTc5DaLfXpU6WbK8",        // 雲端「網站後台-消息與活動」試算表（最新消息）
+  EVENTS_SHEET_ID: "1f8JzHwbDItOId105OcyBv4WGbWBAO5NlDOVn8FQk4VQ", // 雲端「網站後台-重要活動」試算表
+  DRIVE_FOLDER_ID: "1Vi93_Xw7oruDRUguRs4q-mFFfYGNtbAD",            // 雲端「實驗室網站/活動照片」資料夾
+  DRIVE_API_KEY: "AIzaSyD6XJELxWdiiCTPNgHiJrT-09n-X6clCYc"         // 限制 referrer：bobyu89.github.io、localhost:8788
 };
 
 const FALLBACK_NEWS = [
@@ -61,9 +62,9 @@ const FALLBACK_PHOTOS = Array.from({ length: 8 }, (_, i) => ({
   caption: "實驗室活動照片（雲端串接後自動更新）"
 }));
 
-async function fetchSheet(selector) {
-  if (!CONFIG.SHEET_ID) throw new Error("no sheet configured");
-  const url = `https://docs.google.com/spreadsheets/d/${CONFIG.SHEET_ID}/gviz/tq?tqx=out:json&${selector}`;
+async function fetchSheet(sheetId, selector) {
+  if (!sheetId) throw new Error("no sheet configured");
+  const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&${selector}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`sheet http ${res.status}`);
   const text = await res.text();
@@ -98,10 +99,10 @@ async function fetchNews() {
     /* 優先讀名為 news 的工作表；還沒改名時退回第一個分頁 */
     let rows;
     try {
-      rows = await fetchSheet("sheet=news");
+      rows = await fetchSheet(CONFIG.SHEET_ID, "sheet=news");
       if (!rows.some((r) => r.content)) throw new Error("empty news sheet");
     } catch {
-      rows = await fetchSheet("gid=0");
+      rows = await fetchSheet(CONFIG.SHEET_ID, "gid=0");
     }
     const items = rows
       .filter((r) => r.content)
@@ -120,7 +121,7 @@ async function fetchNews() {
 
 async function fetchEvents() {
   try {
-    const rows = await fetchSheet("sheet=events");
+    const rows = await fetchSheet(CONFIG.EVENTS_SHEET_ID, "gid=0");
     const items = rows
       .filter((r) => r.title)
       .map((r) => ({
