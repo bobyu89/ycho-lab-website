@@ -605,6 +605,19 @@ h1, h2, h3 { line-height: 1.25; margin: 0; }
 .pub-list strong { color: var(--ink); }
 .pub-list em { font-style: normal; font-weight: 700; color: var(--cyan-deep); }
 
+.pub-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.pub-badge {
+  display: inline-block;
+  padding: 2px 11px;
+  border-radius: var(--radius-pill);
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.pub-badge.rank { background: rgba(0, 158, 158, 0.1); color: var(--cyan-deep); }
+.pub-badge.role { background: rgba(106, 106, 255, 0.1); color: var(--violet-deep); }
+.pub-badge.grant { border: 1px solid var(--gray-soft); color: #5c6468; }
+
 /* ---------- project / grant rows ---------- */
 .project-list { display: grid; gap: 16px; }
 .project-card { padding: 26px 28px; }
