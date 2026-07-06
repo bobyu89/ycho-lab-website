@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -57,18 +58,22 @@
       <div class="container">
         <div class="stats-grid" data-stagger>
           <div class="glass stat-card reveal">
+            <span class="icon-badge small" data-icon="publications" style="margin:0 auto 12px"></span>
             <div class="stat-num"><span data-count="7">0</span></div>
             <div class="stat-label">Journal Papers</div>
           </div>
           <div class="glass stat-card reveal">
+            <span class="icon-badge small" data-icon="collaboration" style="margin:0 auto 12px"></span>
             <div class="stat-num"><span data-count="5">0</span></div>
             <div class="stat-label">Conference Papers</div>
           </div>
           <div class="glass stat-card reveal">
+            <span class="icon-badge small" data-icon="projects" style="margin:0 auto 12px"></span>
             <div class="stat-num"><span data-count="4">0</span></div>
             <div class="stat-label">Active Projects</div>
           </div>
           <div class="glass stat-card reveal">
+            <span class="icon-badge small" data-icon="students" style="margin:0 auto 12px"></span>
             <div class="stat-num"><span data-count="3">0</span></div>
             <div class="stat-label">Lab Members</div>
           </div>
@@ -89,22 +94,22 @@
         </div>
         <div class="focus-grid" data-stagger>
           <article class="glass focus-card reveal">
-            <div class="focus-top"><span class="focus-index">01</span><span class="focus-status">ACTIVE</span></div>
+            <div class="focus-top"><span style="display:flex;align-items:center;gap:10px"><span class="icon-badge small" data-icon="ecg"></span><span class="focus-index">01</span></span><span class="focus-status">ACTIVE</span></div>
             <h3>數位心理健康與失樂感監測</h3>
             <p>發展 SHAPS、EMA、移動平均與個人化動態監測架構，辨識憂鬱與失樂感風險變化。</p>
           </article>
           <article class="glass focus-card reveal">
-            <div class="focus-top"><span class="focus-index">02</span><span class="focus-status">ACTIVE</span></div>
+            <div class="focus-top"><span style="display:flex;align-items:center;gap:10px"><span class="icon-badge small" data-icon="education"></span><span class="focus-index">02</span></span><span class="focus-status">ACTIVE</span></div>
             <h3>智慧護理教育與擬真訓練</h3>
             <p>分析擬真教育中的學習反應異質性，建立 learner-tailored simulation 與成效評估模式。</p>
           </article>
           <article class="glass focus-card reveal">
-            <div class="focus-top"><span class="focus-index">03</span><span class="focus-status">ACTIVE</span></div>
+            <div class="focus-top"><span style="display:flex;align-items:center;gap:10px"><span class="icon-badge small" data-icon="analytics"></span><span class="focus-index">03</span></span><span class="focus-status">ACTIVE</span></div>
             <h3>照護產業科技化與服務轉型</h3>
             <p>建立照護產業科技化評估指標與推動指引，支援長照與照護服務的數位轉型。</p>
           </article>
           <article class="glass focus-card reveal">
-            <div class="focus-top"><span class="focus-index">04</span><span class="focus-status">ACTIVE</span></div>
+            <div class="focus-top"><span style="display:flex;align-items:center;gap:10px"><span class="icon-badge small" data-icon="clinical-care"></span><span class="focus-index">04</span></span><span class="focus-status">ACTIVE</span></div>
             <h3>臨床轉譯與制度化應用</h3>
             <p>把研究從論文推向場域驗證、智慧財產、國際合作、教育模組與臨床工作流程。</p>
           </article>
@@ -193,6 +198,7 @@
     </section>
   </main>
 
+  <script src="js/icons.js"></script>
   <script src="js/components.js"></script>
   <script src="js/data.js"></script>
   <script src="js/animations.js"></script>

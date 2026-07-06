@@ -8,7 +8,22 @@ const NAV_ITEMS = [
   { id: "pi", href: "pi.html", label: "主持人" }
 ];
 
+const LOGO_SVG = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+  <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M12 7.6v7.2M8.4 11.2h7.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>`;
+
 function initLayout(activePage) {
+  const gradientDefs = document.createElement("div");
+  gradientDefs.setAttribute("aria-hidden", "true");
+  gradientDefs.innerHTML = `<svg width="0" height="0" style="position:absolute"><defs>
+    <linearGradient id="grad-ci" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00e3e3"/>
+      <stop offset="1" stop-color="#6a6aff"/>
+    </linearGradient>
+  </defs></svg>`;
+  document.body.prepend(gradientDefs);
+
   const navLinks = NAV_ITEMS.map(
     (item) =>
       `<a href="${item.href}" ${item.id === activePage ? "data-active" : ""}>${item.label}</a>`
@@ -18,7 +33,7 @@ function initLayout(activePage) {
   header.className = "site-header glass";
   header.innerHTML = `
     <a class="brand" href="index.html" aria-label="回到首頁">
-      <span class="brand-mark">SH</span>
+      <span class="brand-mark">${LOGO_SVG}</span>
       <span class="brand-text">
         <strong>智慧醫療轉譯及創新實驗室</strong>
         <small>SMART HEALTH TRANSLATION &amp; INNOVATION LAB</small>
@@ -83,6 +98,7 @@ function initLayout(activePage) {
   }, { passive: true });
 
   initLightboxDom();
+  if (typeof initIcons === "function") initIcons();
 }
 
 let lightboxEl = null;
