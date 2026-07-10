@@ -24,7 +24,7 @@ const SITE = {
    填入後即自動串接，留空則顯示內建備用資料。設定步驟見 README-維護說明.md
    ========================================================================== */
 const CONFIG = {
-  SHEET_ID: "1061JGstTRdL_tsDVdKwjhnx8H2rvTc5DaLfXpU6WbK8",        // 雲端「網站後台-消息與活動」試算表（最新消息）
+  SHEET_ID: "1RExVzjwIOxZ1f3GjAb6-Lc758Faz0KjoU9j56q8PZ8U",        // 雲端「網站後台-消息與活動（含英文欄）」試算表（最新消息）
   EVENTS_SHEET_ID: "1f8JzHwbDItOId105OcyBv4WGbWBAO5NlDOVn8FQk4VQ", // 雲端「網站後台-重要活動」試算表
   DRIVE_FOLDER_ID: "1Vi93_Xw7oruDRUguRs4q-mFFfYGNtbAD",            // 雲端「實驗室網站/活動照片」資料夾
   DRIVE_API_KEY: "AIzaSyD6XJELxWdiiCTPNgHiJrT-09n-X6clCYc"         // 限制 referrer：bobyu89.github.io、localhost:8788
