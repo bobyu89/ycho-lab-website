@@ -1,5 +1,25 @@
-/* 內容後台設定：填入後即自動串接，留空則顯示內建備用資料。
-   設定步驟見 README-維護說明.md */
+/* ==========================================================================
+   YCHO Lab Website — Site Data
+   智慧醫療轉譯及創新實驗室 (Smart Health Translation & Innovation Lab)
+   結構與 sung-lab-website/js/data.js 保持一致；保留原有 Google Sheets /
+   Google Drive 串接設定與解析邏輯。
+   ========================================================================== */
+
+const SITE = {
+  nameZh: "智慧醫療轉譯及創新實驗室",
+  nameEn: "Smart Health Translation & Innovation Lab",
+  tagline: "以護理科學為根、以數位量測為方法，發展可解釋、可落地、可擴散的智慧醫療與心理健康創新",
+  pi: "賀彥中 助理教授",
+  dept: "國防醫學大學護理學系",
+  email: "nokia3350g@gmail.com",
+  scholar: "https://scholar.google.com/citations?user=sa65IacAAAAJ&hl=zh-TW",
+  stats: { journal: 7, conference: 5, projects: 5, members: 4 }
+};
+
+/* ==========================================================================
+   CONFIG — Google Sheets (gviz) + Google Drive source settings
+   填入後即自動串接，留空則顯示內建備用資料。設定步驟見 README-維護說明.md
+   ========================================================================== */
 const CONFIG = {
   SHEET_ID: "1061JGstTRdL_tsDVdKwjhnx8H2rvTc5DaLfXpU6WbK8",        // 雲端「網站後台-消息與活動」試算表（最新消息）
   EVENTS_SHEET_ID: "1f8JzHwbDItOId105OcyBv4WGbWBAO5NlDOVn8FQk4VQ", // 雲端「網站後台-重要活動」試算表
@@ -7,6 +27,9 @@ const CONFIG = {
   DRIVE_API_KEY: "AIzaSyD6XJELxWdiiCTPNgHiJrT-09n-X6clCYc"         // 限制 referrer：bobyu89.github.io、localhost:8788
 };
 
+/* ==========================================================================
+   FALLBACK data — shown whenever CONFIG is empty or a fetch/parse fails.
+   ========================================================================== */
 const FALLBACK_NEWS = [
   { date: "2026-01-01", category: "公告", content: "「照護產業科技化指數與指引研究案」（經濟部產業發展署／資策會）正式啟動。", link: "" },
   { date: "2025-08-01", category: "公告", content: "國科會計畫「基於移動平均理論與生態瞬時評估法之失樂感個人化動態監測系統發展與應用」開始執行。", link: "" },
@@ -34,6 +57,7 @@ const FALLBACK_EVENTS = [
   }
 ];
 
+/* 佔位照片 — 尚未串接 Drive 或雲端相簿為空時顯示 */
 function makePlaceholder(n) {
   const hues = [
     ["#00e3e3", "#6a6aff"], ["#6a6aff", "#00e3e3"], ["#8e8e8e", "#00e3e3"],
@@ -62,6 +86,9 @@ const FALLBACK_PHOTOS = Array.from({ length: 8 }, (_, i) => ({
   caption: "實驗室活動照片（雲端串接後自動更新）"
 }));
 
+/* ==========================================================================
+   Fetchers — Google Sheets (gviz) + Google Drive
+   ========================================================================== */
 async function fetchSheet(sheetId, selector) {
   if (!sheetId) throw new Error("no sheet configured");
   const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&${selector}`;

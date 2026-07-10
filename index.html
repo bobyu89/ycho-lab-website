@@ -1,287 +1,547 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>智慧醫療轉譯及創新實驗室 | Smart Health Translation and Innovation Lab</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智慧醫療轉譯及創新實驗室</title>
   <meta name="description" content="智慧醫療轉譯及創新實驗室聚焦智慧醫療、護理研究、心理健康、數位監測、擬真教育與臨床轉譯創新。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@500;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="blob blob-cyan" style="width:420px;height:420px;top:-80px;right:8%"></div>
-      <div class="blob blob-violet" style="width:380px;height:380px;bottom:-60px;right:30%"></div>
-      <div class="blob blob-gray" style="width:300px;height:300px;top:30%;left:-120px"></div>
-      <div class="container hero-grid">
-        <div>
-          <p class="mono-label">[SMART.HEALTH.LAB] — NURSING SCIENCE · DIGITAL MENTAL HEALTH</p>
-          <h1>讓智慧醫療<br>真的<span class="accent">走進照護現場</span></h1>
-          <p class="hero-copy">
-            以護理科學為根、以數位量測為方法、以臨床與教育場域為驗證基地，
-            發展可解釋、可落地、可擴散的智慧醫療與心理健康創新。
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="research.html">查看研究主軸 <span class="arrow">→</span></a>
-            <a class="btn btn-ghost" href="#join">合作與加入</a>
-          </div>
-          <div class="hero-chips">
-            <span class="glass">Measure</span>
-            <span class="glass">Monitor</span>
-            <span class="glass">Translate</span>
-            <span class="glass">Implement</span>
+  <!-- ==========================================================================
+       Hero
+       ========================================================================== -->
+  <section class="section section--tint hero">
+    <div class="dots" style="position: absolute; inset: 0; z-index: 0;"></div>
+    <div class="blob" style="top: -120px; right: -140px;"></div>
+    <div class="blob" style="bottom: -160px; left: -160px; width: 360px; height: 360px;"></div>
+    <div class="container hero__inner">
+      <div class="hero__copy reveal">
+        <span class="chip">智慧醫療轉譯及創新實驗室</span>
+        <h1 class="hero__title">
+          讓<span class="hl-cyan">智慧醫療</span>，真的<span class="hl-violet">走進照護現場</span>
+        </h1>
+        <p class="hero__subtitle">以護理科學為根、以數位量測為方法、以臨床與教育場域為驗證基地，發展可解釋、可落地、可擴散的智慧醫療與心理健康創新。</p>
+        <div class="hero__chips">
+          <span class="chip">量測 Measure</span>
+          <span class="chip">監測 Monitor</span>
+          <span class="chip">轉譯 Translate</span>
+          <span class="chip">落地 Implement</span>
+        </div>
+        <div class="hero__actions">
+          <a href="research.html" class="btn btn-primary">探索研究</a>
+          <a href="publications.html" class="btn btn-outline">查看成果</a>
+        </div>
+      </div>
+      <div class="hero__art-wrap reveal">
+        <img class="hero-art" src="assets/hero-illustration.png" alt="智慧醫療研究插畫"
+          onerror="this.classList.add('hero-art--placeholder'); this.removeAttribute('src'); this.setAttribute('alt',''); this.setAttribute('role','presentation'); this.onerror=null;">
+      </div>
+    </div>
+  </section>
+
+  <div class="ecg-divider"></div>
+
+  <!-- ==========================================================================
+       研究核心領域 (Research Focus)
+       ========================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="focus-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00E3E3"/>
+                  <stop offset="100%" stop-color="#6A6AFF"/>
+                </linearGradient>
+              </defs>
+              <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" fill="none" stroke="url(#focus-logo-grad)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M12 7.6v7.2M8.4 11.2h7.2" fill="none" stroke="url(#focus-logo-grad)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          研究核心領域
+        </h2>
+        <span class="mono-en">OUR FOCUS</span>
+      </div>
+
+      <div class="focus-grid">
+        <div class="card focus-card reveal" data-reveal-group="focus">
+          <span class="focus-card__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#007A7A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2.5 12.5h3.5l1.8-4.5 2.8 8.5 2.3-6.5 1.4 2.5h2.2"/>
+              <path d="M18.5 12.5c0-1 .8-1.8 1.5-1.8s1.5.8 1.5 1.8c0 1.2-1.5 2.3-1.5 2.3s-1.5-1.1-1.5-2.3z"/>
+            </svg>
+          </span>
+          <h3 class="focus-card__title">數位心理健康與失樂感監測</h3>
+          <p class="focus-card__text">發展 SHAPS、EMA、移動平均與個人化動態監測架構，辨識憂鬱與失樂感風險變化。</p>
+        </div>
+
+        <div class="card focus-card reveal" data-reveal-group="focus">
+          <span class="focus-card__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#4646D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 4 2.5 8.8 12 13.6l9.5-4.8L12 4z"/>
+              <path d="M6.5 11.2v4.6c0 1.5 2.5 2.8 5.5 2.8s5.5-1.3 5.5-2.8v-4.6"/>
+              <path d="M21.5 9v5"/>
+            </svg>
+          </span>
+          <h3 class="focus-card__title">智慧護理教育與擬真訓練</h3>
+          <p class="focus-card__text">分析擬真教育中的學習反應異質性，建立 learner-tailored simulation 與成效評估模式。</p>
+        </div>
+
+        <div class="card focus-card reveal" data-reveal-group="focus">
+          <span class="focus-card__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#007A7A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 20.5v-6M8.5 20.5v-10M13 20.5v-4"/>
+              <path d="M4 9.5l4.5-3.5 4 2.5 5-4.5"/>
+              <circle cx="18.5" cy="17" r="3.2"/>
+              <path d="M18.5 13.8V17h3.2"/>
+            </svg>
+          </span>
+          <h3 class="focus-card__title">照護產業科技化與服務轉型</h3>
+          <p class="focus-card__text">建立照護產業科技化評估指標與推動指引，支援長照與照護服務的數位轉型。</p>
+        </div>
+
+        <div class="card focus-card reveal" data-reveal-group="focus">
+          <span class="focus-card__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#4646D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="8.5" cy="7" r="3.2"/>
+              <path d="M3 20c0-3 2.5-5.4 5.5-5.4 1.4 0 2.7.5 3.7 1.4"/>
+              <path d="M17 11.5v6M14 14.5h6"/>
+            </svg>
+          </span>
+          <h3 class="focus-card__title">臨床轉譯與制度化應用</h3>
+          <p class="focus-card__text">把研究從論文推向場域驗證、智慧財產、國際合作、教育模組與臨床工作流程。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ecg-divider"></div>
+
+  <!-- ==========================================================================
+       最新消息 (Latest News)
+       ========================================================================== -->
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="news-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00E3E3"/>
+                  <stop offset="100%" stop-color="#6A6AFF"/>
+                </linearGradient>
+              </defs>
+              <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" fill="none" stroke="url(#news-logo-grad)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M12 7.6v7.2M8.4 11.2h7.2" fill="none" stroke="url(#news-logo-grad)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          最新消息
+        </h2>
+        <span class="mono-en">LATEST NEWS</span>
+      </div>
+
+      <div class="news-grid" id="news-grid" data-reveal-group="news">
+        <!-- renderNews() populates this from fetchNews() -->
+      </div>
+      <div style="text-align: center; margin-top: 32px;">
+        <button id="news-view-all" class="news-view-all-btn" style="display: none;">查看全部 →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       研究成果總覽 (Our Impact)
+       ========================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="impact-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00E3E3"/>
+                  <stop offset="100%" stop-color="#6A6AFF"/>
+                </linearGradient>
+              </defs>
+              <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" fill="none" stroke="url(#impact-logo-grad)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M12 7.6v7.2M8.4 11.2h7.2" fill="none" stroke="url(#impact-logo-grad)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          研究成果總覽
+        </h2>
+        <span class="mono-en">OUR IMPACT</span>
+      </div>
+
+      <div class="metric-grid">
+        <div class="card metric-card reveal" data-reveal-group="metric">
+          <span class="metric-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#007A7A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 3.5h12v17H6v-17z"/>
+              <path d="M12.5 3.5v4.8l1.8-1.3 1.8 1.3V3.5"/>
+              <path d="M9.2 17v-3M12 17v-5M14.8 17v-2"/>
+            </svg>
+          </span>
+          <span class="metric-card__number" data-stat="journal" data-count="7">0</span>
+          <span class="metric-card__label">期刊論文</span>
+          <span class="metric-card__label-en mono-en">Journal Papers</span>
+        </div>
+
+        <div class="card metric-card reveal" data-reveal-group="metric">
+          <span class="metric-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#4646D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="12" r="4.6"/>
+              <circle cx="15" cy="12" r="4.6"/>
+            </svg>
+          </span>
+          <span class="metric-card__number" data-stat="conference" data-count="5">0</span>
+          <span class="metric-card__label">研討會論文</span>
+          <span class="metric-card__label-en mono-en">Conference Papers</span>
+        </div>
+
+        <div class="card metric-card reveal" data-reveal-group="metric">
+          <span class="metric-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#007A7A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3.5 7.5V6.4c0-1 .8-1.9 1.9-1.9h3.4l2 2h7.8c1 0 1.9.8 1.9 1.9v9.2c0 1-.8 1.9-1.9 1.9H5.4c-1 0-1.9-.8-1.9-1.9V7.5z"/>
+              <circle cx="14.8" cy="13" r="3"/>
+              <path d="M14.8 10v3h3"/>
+            </svg>
+          </span>
+          <span class="metric-card__number" data-stat="projects" data-count="5">0</span>
+          <span class="metric-card__label">研究計畫</span>
+          <span class="metric-card__label-en mono-en">Projects</span>
+        </div>
+
+        <div class="card metric-card reveal" data-reveal-group="metric">
+          <span class="metric-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#4646D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="4.6" r="1.9"/>
+              <path d="M4.5 19.5c2-1.4 5-1.4 7.5 0 2.5-1.4 5.5-1.4 7.5 0V9.3c-2-1.4-5-1.4-7.5 0-2.5-1.4-5.5-1.4-7.5 0v10.2z"/>
+              <path d="M12 9.3v10.2"/>
+            </svg>
+          </span>
+          <span class="metric-card__number" data-stat="members" data-count="4">0</span>
+          <span class="metric-card__label">團隊成員</span>
+          <span class="metric-card__label-en mono-en">Members</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       研究團隊 (Our Team)
+       ========================================================================== -->
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="team-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00E3E3"/>
+                  <stop offset="100%" stop-color="#6A6AFF"/>
+                </linearGradient>
+              </defs>
+              <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" fill="none" stroke="url(#team-logo-grad)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M12 7.6v7.2M8.4 11.2h7.2" fill="none" stroke="url(#team-logo-grad)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          研究團隊
+        </h2>
+        <span class="mono-en">OUR TEAM</span>
+      </div>
+
+      <div class="team-grid">
+        <div class="card team-card reveal" data-reveal-group="team">
+          <img class="avatar team-card__avatar" src="assets/pi-photo.jpg" alt="賀彥中 助理教授照片">
+          <h3 class="team-card__name" id="team-pi-name"></h3>
+          <p class="team-card__role">實驗室主持人</p>
+          <div class="team-card__badges">
+            <span class="chip">智慧醫療</span>
+            <span class="chip">數位心理健康</span>
+            <span class="chip">生態瞬時評估</span>
+            <span class="chip">護理擬真教育</span>
+            <span class="chip">AI 教育創新</span>
           </div>
         </div>
-        <div>
-          <div class="glass sheen monitor-card">
-            <div class="monitor-head">
-              <span class="mono-label"><span class="live-dot"></span>EMA.MONITOR.ACTIVE</span>
-              <span class="mono-label" style="color:var(--gray)">SHAPS-TREND</span>
-            </div>
-            <canvas id="wave-canvas" aria-hidden="true"></canvas>
-            <div class="monitor-meta">
-              <span>失樂感個人化動態監測</span>
-              <strong>MOVING.AVG ▸ STABLE</strong>
-            </div>
+
+        <div class="card team-card reveal" data-reveal-group="team">
+          <span class="avatar team-card__avatar">游</span>
+          <h3 class="team-card__name">游明勳</h3>
+          <p class="team-card__role">碩士班研究生・專科護理師所</p>
+          <div class="team-card__badges">
+            <span class="chip">生成式 AI</span>
+            <span class="chip">檢索增強生成</span>
+            <span class="chip">臨床推理教育</span>
+          </div>
+        </div>
+
+        <div class="card team-card reveal" data-reveal-group="team">
+          <span class="avatar team-card__avatar">方</span>
+          <h3 class="team-card__name">方嘉苓</h3>
+          <p class="team-card__role">碩士班研究生・亞洲大學（共同指導）</p>
+          <div class="team-card__badges">
+            <span class="chip">生態瞬時評估</span>
+            <span class="chip">失樂感監測</span>
+            <span class="chip">護理學生</span>
+          </div>
+        </div>
+
+        <div class="card team-card reveal" data-reveal-group="team">
+          <span class="avatar team-card__avatar">洪</span>
+          <h3 class="team-card__name">洪怡妃</h3>
+          <p class="team-card__role">碩士班研究生・亞洲大學（共同指導）</p>
+          <div class="team-card__badges">
+            <span class="chip">急性後期照護</span>
+            <span class="chip">照顧者負荷</span>
+          </div>
+        </div>
+
+        <a class="wip team-card--wip reveal" data-reveal-group="team" href="members.html">
+          查看全部成員 →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ecg-divider"></div>
+
+  <!-- ==========================================================================
+       聯絡我們 (Contact Us)
+       ========================================================================== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="contact-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00E3E3"/>
+                  <stop offset="100%" stop-color="#6A6AFF"/>
+                </linearGradient>
+              </defs>
+              <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" fill="none" stroke="url(#contact-logo-grad)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M12 7.6v7.2M8.4 11.2h7.2" fill="none" stroke="url(#contact-logo-grad)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          聯絡我們
+        </h2>
+        <span class="mono-en">CONTACT US</span>
+      </div>
+
+      <div class="contact-grid">
+        <form class="card contact-form reveal" id="contact-form" data-reveal-group="contact" novalidate>
+          <div class="form-field">
+            <label for="contact-name">姓名 <span class="form-required">*</span></label>
+            <input type="text" id="contact-name" name="name" required>
+            <p class="form-error" id="contact-name-error" hidden>請填寫姓名</p>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-email">Email</label>
+            <input type="email" id="contact-email" name="email">
+          </div>
+
+          <div class="form-field">
+            <label for="contact-subject">主題</label>
+            <select id="contact-subject" name="subject">
+              <option value="加入研究團隊">加入研究團隊</option>
+              <option value="研究合作">研究合作</option>
+              <option value="演講與媒體邀約">演講與媒體邀約</option>
+              <option value="其他">其他</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-message">訊息 <span class="form-required">*</span></label>
+            <textarea id="contact-message" name="message" rows="5" required></textarea>
+            <p class="form-error" id="contact-message-error" hidden>請填寫訊息內容</p>
+          </div>
+
+          <button type="submit" class="btn btn-primary">送出訊息</button>
+        </form>
+
+        <div class="contact-info-grid">
+          <div class="card card--soft contact-info-card reveal" data-reveal-group="contact">
+            <h3 class="contact-info-card__title">加入研究團隊</h3>
+            <p class="contact-info-card__text">歡迎對護理、心理健康、資料科學、AI 輔助教育或智慧醫療轉譯有興趣的研究生與夥伴加入。你不一定要一開始就會寫程式，但需要願意把問題問清楚，也願意讓研究真正回到人與照護現場。</p>
+          </div>
+
+          <div class="card card--soft contact-info-card reveal" data-reveal-group="contact">
+            <h3 class="contact-info-card__title">臨床與產學合作</h3>
+            <p class="contact-info-card__text">歡迎臨床單位、照護產業與工程團隊洽談合作，共同把研究從論文推向場域驗證與臨床工作流程。</p>
+          </div>
+
+          <div class="card card--soft contact-info-card reveal" data-reveal-group="contact">
+            <h3 class="contact-info-card__title">國際合作與交流</h3>
+            <p class="contact-info-card__text">歡迎學術機構與國際團隊交流，拓展智慧醫療與數位心理健康的跨國研究合作。</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Stats -->
-    <section class="section" style="padding-top:0">
-      <div class="container">
-        <div class="stats-grid" data-stagger>
-          <div class="glass stat-card reveal">
-            <span class="icon-badge small" data-icon="publications" style="margin:0 auto 12px"></span>
-            <div class="stat-num"><span data-count="7">0</span></div>
-            <div class="stat-label">Journal Papers</div>
-          </div>
-          <div class="glass stat-card reveal">
-            <span class="icon-badge small" data-icon="collaboration" style="margin:0 auto 12px"></span>
-            <div class="stat-num"><span data-count="5">0</span></div>
-            <div class="stat-label">Conference Papers</div>
-          </div>
-          <div class="glass stat-card reveal">
-            <span class="icon-badge small" data-icon="projects" style="margin:0 auto 12px"></span>
-            <div class="stat-num"><span data-count="4">0</span></div>
-            <div class="stat-label">Active Projects</div>
-          </div>
-          <div class="glass stat-card reveal">
-            <span class="icon-badge small" data-icon="students" style="margin:0 auto 12px"></span>
-            <div class="stat-num"><span data-count="4">0</span></div>
-            <div class="stat-label">Lab Members</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Research Focus -->
-    <section class="section" id="focus">
-      <div class="blob blob-violet" style="width:340px;height:340px;left:-140px;top:10%"></div>
-      <div class="container">
-        <div class="section-head split reveal">
-          <div>
-            <p class="mono-label">[DIR.RESEARCH.FOCUS]</p>
-            <h2 class="section-title">四個主軸，貫穿量測、監測、轉譯與創新</h2>
-          </div>
-          <p class="section-desc">本實驗室由賀彥中老師主持，關心的不只是模型表現，而是模型如何被臨床人員理解、採納並改善照護決策。</p>
-        </div>
-        <div class="focus-grid" data-stagger>
-          <article class="glass focus-card reveal">
-            <div class="focus-top"><span style="display:flex;align-items:center;gap:10px"><span class="icon-badge small" data-icon="ecg"></span><span class="focus-index">01</span></span><span class="focus-status">ACTIVE</span></div>
-            <h3>數位心理健康與失樂感監測</h3>
-            <p>發展 SHAPS、EMA、移動平均與個人化動態監測架構，辨識憂鬱與失樂感風險變化。</p>
-          </article>
-          <article class="glass focus-card reveal">
-            <div class="focus-top"><span style="display:flex;align-items:center;gap:10px"><span class="icon-badge small" data-icon="education"></span><span class="focus-index">02</span></span><span class="focus-status">ACTIVE</span></div>
-            <h3>智慧護理教育與擬真訓練</h3>
-            <p>分析擬真教育中的學習反應異質性，建立 learner-tailored simulation 與成效評估模式。</p>
-          </article>
-          <article class="glass focus-card reveal">
-            <div class="focus-top"><span style="display:flex;align-items:center;gap:10px"><span class="icon-badge small" data-icon="analytics"></span><span class="focus-index">03</span></span><span class="focus-status">ACTIVE</span></div>
-            <h3>照護產業科技化與服務轉型</h3>
-            <p>建立照護產業科技化評估指標與推動指引，支援長照與照護服務的數位轉型。</p>
-          </article>
-          <article class="glass focus-card reveal">
-            <div class="focus-top"><span style="display:flex;align-items:center;gap:10px"><span class="icon-badge small" data-icon="clinical-care"></span><span class="focus-index">04</span></span><span class="focus-status">ACTIVE</span></div>
-            <h3>臨床轉譯與制度化應用</h3>
-            <p>把研究從論文推向場域驗證、智慧財產、國際合作、教育模組與臨床工作流程。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- News -->
-    <section class="section" id="news">
-      <div class="container">
-        <div class="section-head split reveal">
-          <div>
-            <p class="mono-label">[LAB.NEWS.FEED]</p>
-            <h2 class="section-title">團隊最新消息</h2>
-          </div>
-          <p class="section-desc">學生榮譽、論文刊登、研討會參與與實驗室公告。</p>
-        </div>
-        <div class="timeline" id="news-list" aria-live="polite"></div>
-        <div class="news-more">
-          <button class="btn btn-ghost" id="news-more-btn" type="button">顯示更多消息</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Key Events -->
-    <section class="section" id="events">
-      <div class="blob blob-cyan" style="width:300px;height:300px;right:-120px;top:20%"></div>
-      <div class="container">
-        <div class="section-head split reveal">
-          <div>
-            <p class="mono-label">[EVENT.HIGHLIGHTS]</p>
-            <h2 class="section-title">重要活動</h2>
-          </div>
-          <p class="section-desc">正在進行與即將到來的重點研究活動。</p>
-        </div>
-        <div class="event-list" id="event-list" data-stagger></div>
-      </div>
-    </section>
-
-    <!-- Gallery preview -->
-    <section class="section" id="gallery-preview">
-      <div class="container">
-        <div class="section-head split reveal">
-          <div>
-            <p class="mono-label">[FIELD.MOMENTS]</p>
-            <h2 class="section-title">活動花絮</h2>
-          </div>
-          <p class="section-desc">研討會、實驗室活動與臨床場域的紀錄。</p>
-        </div>
-        <div class="gallery-masonry" id="gallery-grid"></div>
-        <div class="news-more">
-          <a class="btn btn-ghost" href="gallery.html">看更多花絮 <span class="arrow">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- About PI -->
-    <section class="section" id="join">
-      <div class="blob blob-violet" style="width:320px;height:320px;left:-100px;bottom:0"></div>
-      <div class="container">
-        <div class="pi-grid reveal">
-          <div class="glass sheen pi-photo">
-            <img src="assets/pi-photo.jpg" alt="賀彥中 助理教授">
-          </div>
-          <div class="pi-body">
-            <p class="mono-label">PI: HO YEN-CHUNG</p>
-            <h2 class="section-title" style="font-size:clamp(26px,3.4vw,38px)">賀彥中 助理教授</h2>
-            <p>
-              <strong>國防醫學大學護理學系助理教授</strong>，智慧醫療轉譯及創新實驗室主持人。
-              研究聚焦<strong>失樂感（anhedonia）與憂鬱風險監測</strong>、<strong>生態瞬時評估（EMA）</strong>、
-              <strong>移動平均個人化動態監測</strong>、<strong>護理擬真教育</strong>與 <strong>AI 輔助護理訓練</strong>，
-              致力於把研究從論文推向場域驗證與臨床工作流程。
-            </p>
-            <ul class="pi-facts">
-              <li><span class="k">Position</span><strong>助理教授</strong>｜國防醫學大學護理學系</li>
-              <li><span class="k">Research</span>智慧醫療・護理轉譯・數位心理健康・AI 教育創新</li>
-              <li><span class="k">Contact</span><a href="mailto:nokia3350g@gmail.com" style="color:var(--violet-deep);font-weight:700">nokia3350g@gmail.com</a></li>
-            </ul>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="pi.html">完整簡介 <span class="arrow">→</span></a>
-              <a class="btn btn-ghost" href="members.html">認識團隊</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script src="js/icons.js"></script>
-  <script src="js/components.js"></script>
   <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
   <script src="js/animations.js"></script>
   <script>
-    initLayout("index");
+    initLayout('index');
 
-    const BADGE_CLASS = { "榮譽": "badge-honor", "發表": "badge-pub", "活動": "badge-event", "公告": "badge-notice" };
-    const NEWS_PAGE = 5;
-    let allNews = [];
-    let newsShown = 0;
-
-    function renderNewsBatch() {
-      const list = document.getElementById("news-list");
-      const next = allNews.slice(newsShown, newsShown + NEWS_PAGE);
-      next.forEach((item) => {
-        const el = document.createElement("article");
-        el.className = "news-item";
-        const badge = BADGE_CLASS[item.category] || "badge-notice";
-        const content = item.link
-          ? `${escapeHtml(item.content)} <a href="${encodeURI(item.link)}" target="_blank" rel="noopener">連結 ↗</a>`
-          : escapeHtml(item.content);
-        el.innerHTML = `
-          <div class="news-row">
-            <span class="news-date">${escapeHtml(item.date)}</span>
-            <span class="badge ${badge}">${escapeHtml(item.category)}</span>
-          </div>
-          <p class="news-text">${content}</p>`;
-        list.append(el);
-      });
-      newsShown += next.length;
-      document.getElementById("news-more-btn").style.display =
-        newsShown >= allNews.length ? "none" : "";
-    }
+    /* ==========================================================================
+       Homepage inline init — news rendering + contact form
+       ========================================================================== */
+    const NEWS_CHIP_CLASS = {
+      "榮譽": "chip--honor",
+      "發表": "chip--pub",
+      "活動": "chip--event",
+      "公告": "chip--announce"
+    };
 
     function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, (c) =>
-        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
     }
 
-    async function boot() {
+    function renderNewsCard(item) {
+      const chipClass = NEWS_CHIP_CLASS[item.category] || "chip--announce";
+      const escapedDate = escapeHtml(item.date);
+      const escapedCategory = escapeHtml(item.category);
+      const escapedContent = escapeHtml(item.content);
+      const contentHtml = (typeof item.link === "string" && item.link.trim() !== "")
+        ? `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener">${escapedContent}</a>`
+        : escapedContent;
+      return `
+<div class="card news-card reveal" data-reveal-group="news" tabindex="0" role="button"
+     aria-expanded="false" aria-label="展開消息全文">
+  <div class="news-card__meta">
+    <span class="news-card__date mono-en">${escapedDate}</span>
+    <span class="chip ${chipClass}">${escapedCategory}</span>
+  </div>
+  <p class="news-card__content">${contentHtml}</p>
+</div>`;
+    }
+
+    /* 點卡片（或 Enter/空白鍵）展開/收合全文；點內部連結時不攔截 */
+    function initNewsCardToggle(grid) {
+      const toggle = (card) => {
+        const open = card.classList.toggle("news-card--open");
+        card.setAttribute("aria-expanded", open ? "true" : "false");
+        card.setAttribute("aria-label", open ? "收合消息全文" : "展開消息全文");
+      };
+      grid.addEventListener("click", (e) => {
+        if (e.target.closest("a")) return;
+        const card = e.target.closest(".news-card");
+        if (card) toggle(card);
+      });
+      grid.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        const card = e.target.closest(".news-card");
+        if (card && !e.target.closest("a")) { e.preventDefault(); toggle(card); }
+      });
+    }
+
+    let allNews = [];
+    let newsExpanded = false;
+
+    async function renderNews() {
+      const grid = document.getElementById("news-grid");
+      if (!grid) return;
       allNews = await fetchNews();
-      renderNewsBatch();
-      document.getElementById("news-more-btn").addEventListener("click", renderNewsBatch);
-
-      const events = (await fetchEvents()).filter((e) => e.pinned).slice(0, 3);
-      const eventList = document.getElementById("event-list");
-      events.forEach((ev) => {
-        const [y, m, d] = ev.date.split("-");
-        const el = document.createElement("article");
-        el.className = "glass event-card reveal";
-        el.innerHTML = `
-          <div class="event-date">
-            <div class="d">${escapeHtml(d || "")}</div>
-            <div class="ym">${escapeHtml(y || "")}.${escapeHtml(m || "")}</div>
-          </div>
-          <div>
-            <h3>${escapeHtml(ev.title)}</h3>
-            <p>${escapeHtml(ev.description)}</p>
-          </div>`;
-        eventList.append(el);
-      });
-
-      const photos = await fetchPhotos(8);
-      const grid = document.getElementById("gallery-grid");
-      photos.forEach((p, i) => {
-        const fig = document.createElement("figure");
-        fig.className = "photo-card";
-        fig.style.margin = "0 0 16px";
-        fig.innerHTML = `
-          <img src="${p.thumb}" alt="${escapeHtml(p.caption)}" loading="lazy">
-          <span class="fig-tag">Fig.${String(i + 1).padStart(2, "0")}</span>
-          <figcaption class="photo-caption">${escapeHtml(p.caption)}</figcaption>`;
-        fig.addEventListener("click", () => openLightbox(p.src, p.caption));
-        grid.append(fig);
-      });
-
+      const top3 = allNews.slice(0, 3);
+      grid.innerHTML = top3.map(renderNewsCard).join("");
       initReveal();
-      initCounters();
-      initTimeline();
+      initNewsCardToggle(grid);
+
+      const viewAllBtn = document.getElementById("news-view-all");
+      if (viewAllBtn) {
+        viewAllBtn.style.display = allNews.length > 3 ? "inline-block" : "none";
+        viewAllBtn.addEventListener("click", () => {
+          if (!newsExpanded) {
+            grid.innerHTML = allNews.map(renderNewsCard).join("");
+            initReveal();
+            viewAllBtn.style.display = "none";
+            newsExpanded = true;
+          }
+        });
+      }
     }
 
-    initWave(document.getElementById("wave-canvas"));
-    boot();
+    function fillContactStrings() {
+      const piName = document.getElementById("team-pi-name");
+      if (piName) piName.textContent = SITE.pi;
+    }
+
+    function fillStats() {
+      const stats = SITE.stats;
+      const numberEls = document.querySelectorAll(".metric-card__number[data-stat]");
+      numberEls.forEach((el) => {
+        const key = el.dataset.stat;
+        const value = stats[key];
+        if (value === null || value === undefined) return;
+        el.setAttribute("data-count", String(value));
+      });
+    }
+
+    function initContactForm() {
+      const form = document.getElementById("contact-form");
+      if (!form) return;
+
+      const nameInput = document.getElementById("contact-name");
+      const emailInput = document.getElementById("contact-email");
+      const subjectInput = document.getElementById("contact-subject");
+      const messageInput = document.getElementById("contact-message");
+      const nameError = document.getElementById("contact-name-error");
+      const messageError = document.getElementById("contact-message-error");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = nameInput.value.trim();
+        const message = messageInput.value.trim();
+
+        const nameValid = name.length > 0;
+        const messageValid = message.length > 0;
+
+        nameError.hidden = nameValid;
+        messageError.hidden = messageValid;
+
+        if (!nameValid || !messageValid) return;
+
+        const email = emailInput.value.trim();
+        const subject = subjectInput.value;
+
+        const mailSubject = "[網站來信] " + subject + " - " + name;
+        const mailBody = message + "\n\n聯絡人：" + name + " (" + email + ")";
+
+        const mailtoUrl = "mailto:" + SITE.email +
+          "?subject=" + encodeURIComponent(mailSubject) +
+          "&body=" + encodeURIComponent(mailBody);
+
+        window.location.href = mailtoUrl;
+      });
+    }
+
+    fillContactStrings();
+    fillStats();
+    initReveal();
+    initCounters();
+    renderNews();
+    initContactForm();
   </script>
 </body>
 </html>

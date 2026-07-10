@@ -1,85 +1,202 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>團隊成員 | 智慧醫療轉譯及創新實驗室</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>團隊成員｜智慧醫療轉譯及創新實驗室</title>
   <meta name="description" content="智慧醫療轉譯及創新實驗室成員：主持人賀彥中助理教授與研究生團隊。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@500;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
-  <main>
-    <section class="page-hero">
-      <div class="blob blob-cyan" style="width:340px;height:340px;top:-90px;right:12%"></div>
-      <div class="blob blob-gray" style="width:280px;height:280px;bottom:-100px;left:-70px"></div>
-      <div class="container">
-        <span class="icon-badge" data-icon="students" style="margin-bottom:16px"></span>
-        <p class="mono-label">[LAB.MEMBERS]</p>
-        <h1>團隊成員</h1>
-        <p>實驗室成員包含研究生與合作夥伴；目前研究生主題橫跨數位心理健康監測、護理學生失樂感動態追蹤，以及急性後期照護中主要照顧者負荷。</p>
+  <!-- ==========================================================================
+       Page hero
+       ========================================================================== -->
+  <section class="section section--tint page-hero">
+    <div class="dots" style="position: absolute; inset: 0; z-index: 0;"></div>
+    <div class="container page-hero__inner reveal">
+      <span class="mono-en page-hero__label">MEMBERS</span>
+      <h1 class="page-hero__title">團隊成員</h1>
+      <p class="page-hero__desc">認識實驗室主持人與研究團隊。目前研究生主題橫跨數位心理健康監測、護理學生失樂感動態追蹤，以及急性後期照護中主要照顧者負荷。</p>
+    </div>
+  </section>
+
+  <div class="ecg-divider"></div>
+
+  <!-- ==========================================================================
+       主持人介紹
+       ========================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="pi-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00E3E3"/>
+                  <stop offset="100%" stop-color="#6A6AFF"/>
+                </linearGradient>
+              </defs>
+              <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" fill="none" stroke="url(#pi-logo-grad)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M12 7.6v7.2M8.4 11.2h7.2" fill="none" stroke="url(#pi-logo-grad)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          實驗室主持人
+        </h2>
+        <span class="mono-en">PRINCIPAL INVESTIGATOR</span>
       </div>
-    </section>
 
-    <section class="section" style="padding-top:40px">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="mono-label">[PRINCIPAL.INVESTIGATOR]</p>
-          <h2 class="section-title">主持人</h2>
+      <div class="card member-intro reveal">
+        <div class="member-intro__avatar-wrap">
+          <img class="avatar member-intro__avatar" src="assets/pi-photo.jpg" alt="賀彥中 助理教授照片">
+          <h3 class="member-intro__name">賀彥中 助理教授</h3>
+          <p class="member-intro__role">Yen-Chung Ho</p>
         </div>
-        <article class="glass project-card reveal" style="margin-bottom:56px">
-          <span class="project-tag">PI: HO YEN-CHUNG</span>
-          <h3>賀彥中 助理教授</h3>
-          <p><strong style="color:var(--ink)">國防醫學大學護理學系助理教授</strong>，智慧醫療轉譯及創新實驗室主持人。研究聚焦失樂感與憂鬱風險監測、生態瞬時評估（EMA）、移動平均個人化動態監測、護理擬真教育與 AI 輔助護理訓練。<a href="pi.html" style="color:var(--violet-deep);font-weight:700">完整簡介 →</a></p>
-        </article>
+        <div class="member-intro__body">
+          <div class="member-intro__block">
+            <h3>現職</h3>
+            <p class="member-intro__current">國防醫學大學護理學系 助理教授・智慧醫療轉譯及創新實驗室主持人</p>
+          </div>
 
-        <div class="section-head reveal">
-          <p class="mono-label">[GRADUATE.STUDENTS]</p>
-          <h2 class="section-title">研究生</h2>
-        </div>
-        <div class="member-grid" data-stagger>
-          <article class="glass member-card reveal">
-            <span class="project-tag">國防醫學大學護理學系專科護理師所碩士班・二年級</span>
-            <h3>游明勳</h3>
-            <p class="member-topic">結合生成式 AI 與檢索增強生成之專科護理師臨床推理學習系統設計與初步驗證</p>
-            <p>基隆長庚醫院內科護理師，現就讀國防醫學大學護理學系專科護理師所碩士班二年級。研究結合生成式 AI（Generative AI）與檢索增強生成（RAG），發展專科護理師臨床推理學習系統並進行初步驗證。</p>
-          </article>
-          <article class="glass member-card reveal">
-            <span class="project-tag">共同指導｜亞洲大學護理學系碩士班</span>
-            <h3>方嘉苓</h3>
-            <p class="member-topic">影響護理系學生失樂感動態變化之相關因素探討：結合生態瞬時評估與數位監測法之前瞻式研究</p>
-            <p>本研究以護理系學生為對象，結合 EMA-SHAPS 與數位監測資料，描繪失樂感在校園日常中的個體內動態變化，並探索個人、情境、行為因素與早期預警指標。</p>
-          </article>
-          <article class="glass member-card reveal">
-            <span class="project-tag">共同指導｜亞洲大學護理學系碩士班</span>
-            <h3>洪怡妃</h3>
-            <p class="member-topic">急性腦血管意外個案於急性後期之醫療整合照護模式對主要照顧者照顧負荷之相關因素探討</p>
-            <p>本研究聚焦接受急性後期醫療整合照護模式之腦血管意外個案，探討主要照顧者照顧負荷現況、個案功能狀態、照顧者特徵與高負荷預測因子。</p>
-          </article>
+          <div class="member-intro__block">
+            <h3>研究方向</h3>
+            <ul class="member-intro__list">
+              <li>失樂感（anhedonia）與憂鬱風險監測</li>
+              <li>生態瞬時評估（EMA）與移動平均個人化動態監測</li>
+              <li>護理擬真教育與學習反應異質性分析</li>
+              <li>AI 輔助護理訓練與教育創新</li>
+            </ul>
+          </div>
+
+          <div class="member-intro__block">
+            <h3>專長</h3>
+            <div class="specialty-chips">
+              <span class="chip"><strong>智慧醫療</strong></span>
+              <span class="chip"><strong>護理轉譯</strong></span>
+              <span class="chip"><strong>數位心理健康</strong></span>
+              <span class="chip"><strong>AI 教育創新</strong></span>
+            </div>
+          </div>
+
+          <div class="member-intro__block">
+            <h3>更多資訊</h3>
+            <p class="member-intro__current"><a href="pi.html" style="color: var(--cyan-deep); font-weight: 700;">完整簡介 →</a>　<a href="https://scholar.google.com/citations?user=sa65IacAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener" style="color: var(--cyan-deep); font-weight: 700;">Google Scholar ↗</a></p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" style="padding-top:0">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="mono-label">[JOIN.US]</p>
-          <h2 class="section-title">歡迎研究生、臨床夥伴、工程夥伴與國際合作團隊加入。</h2>
-          <p class="section-desc">適合加入本實驗室的人，通常對護理、心理健康、資料科學、AI 輔助教育、臨床創新或智慧醫療轉譯有興趣。你不一定要一開始就會寫程式，但需要願意把問題問清楚，也願意讓研究真正回到人與照護現場。</p>
-        </div>
-        <a class="btn btn-primary reveal" href="mailto:nokia3350g@gmail.com">寫信給我們 <span class="arrow">→</span></a>
+  <div class="ecg-divider"></div>
+
+  <!-- ==========================================================================
+       研究生
+       ========================================================================== -->
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="team-members-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00E3E3"/>
+                  <stop offset="100%" stop-color="#6A6AFF"/>
+                </linearGradient>
+              </defs>
+              <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" fill="none" stroke="url(#team-members-logo-grad)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M12 7.6v7.2M8.4 11.2h7.2" fill="none" stroke="url(#team-members-logo-grad)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          研究團隊
+        </h2>
+        <span class="mono-en">TEAM</span>
       </div>
-    </section>
-  </main>
 
-  <script src="js/icons.js"></script>
+      <div class="member-grid">
+        <div class="card member-card reveal" data-reveal-group="members">
+          <div class="member-card__head">
+            <span class="avatar member-card__avatar">游</span>
+            <div>
+              <h3 class="member-card__name">游明勳</h3>
+              <p class="member-card__role">碩士班研究生</p>
+            </div>
+          </div>
+          <div class="member-card__block">
+            <h4>論文題目</h4>
+            <p>結合生成式 AI 與檢索增強生成之專科護理師臨床推理學習系統設計與初步驗證</p>
+          </div>
+          <div class="member-card__block">
+            <h4>學經歷</h4>
+            <ul>
+              <li>基隆長庚醫院內科護理師</li>
+              <li>國防醫學大學護理學系專科護理師所 碩士二年級</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card member-card reveal" data-reveal-group="members">
+          <div class="member-card__head">
+            <span class="avatar member-card__avatar">方</span>
+            <div>
+              <h3 class="member-card__name">方嘉苓</h3>
+              <p class="member-card__role">碩士班研究生（共同指導）</p>
+            </div>
+          </div>
+          <div class="member-card__block">
+            <h4>論文題目</h4>
+            <p>影響護理系學生失樂感動態變化之相關因素探討：結合生態瞬時評估與數位監測法之前瞻式研究</p>
+          </div>
+          <div class="member-card__block">
+            <h4>研究簡介</h4>
+            <p>以護理系學生為對象，結合 EMA-SHAPS 與數位監測資料，描繪失樂感在校園日常中的個體內動態變化，並探索個人、情境、行為因素與早期預警指標。</p>
+          </div>
+          <div class="member-card__block">
+            <h4>學經歷</h4>
+            <ul>
+              <li>亞洲大學護理學系碩士班</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card member-card reveal" data-reveal-group="members">
+          <div class="member-card__head">
+            <span class="avatar member-card__avatar">洪</span>
+            <div>
+              <h3 class="member-card__name">洪怡妃</h3>
+              <p class="member-card__role">碩士班研究生（共同指導）</p>
+            </div>
+          </div>
+          <div class="member-card__block">
+            <h4>論文題目</h4>
+            <p>急性腦血管意外個案於急性後期之醫療整合照護模式對主要照顧者照顧負荷之相關因素探討</p>
+          </div>
+          <div class="member-card__block">
+            <h4>研究簡介</h4>
+            <p>聚焦接受急性後期醫療整合照護模式之腦血管意外個案，探討主要照顧者照顧負荷現況、個案功能狀態、照顧者特徵與高負荷預測因子。</p>
+          </div>
+          <div class="member-card__block">
+            <h4>學經歷</h4>
+            <ul>
+              <li>亞洲大學護理學系碩士班</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="wip reveal" style="margin-top: 24px;">歡迎研究生、臨床夥伴、工程夥伴與國際合作團隊加入，請由「聯絡我們」與我們聯繫</div>
+    </div>
+  </section>
+
+  <script src="js/data.js"></script>
   <script src="js/components.js"></script>
   <script src="js/animations.js"></script>
   <script>
-    initLayout("members");
+    initLayout('members');
     initReveal();
   </script>
 </body>

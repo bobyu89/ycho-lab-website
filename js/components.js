@@ -1,139 +1,188 @@
+/* ==========================================================================
+   YCHO Lab Website — Shared Components
+   智慧醫療轉譯及創新實驗室 (Smart Health Translation & Innovation Lab)
+   LOGO_SVG, initLayout(activePage), openLightbox(src, caption)
+   結構與 sung-lab-website/js/components.js 保持一致。
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Logo — hexagon with medical cross
+   Gradient: #00E3E3 -> #6A6AFF
+   -------------------------------------------------------------------------- */
+const LOGO_SVG = `
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="智慧醫療轉譯及創新實驗室 Logo">
+  <defs>
+    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E3E3"/>
+      <stop offset="100%" stop-color="#6A6AFF"/>
+    </linearGradient>
+  </defs>
+  <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" fill="none" stroke="url(#logo-grad)" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M12 7.6v7.2M8.4 11.2h7.2" fill="none" stroke="url(#logo-grad)" stroke-width="2" stroke-linecap="round"/>
+</svg>`.trim();
+
+/* --------------------------------------------------------------------------
+   Nav items — order is significant
+   -------------------------------------------------------------------------- */
 const NAV_ITEMS = [
-  { id: "index", href: "index.html", label: "首頁" },
-  { id: "research", href: "research.html", label: "研究主軸" },
-  { id: "projects", href: "projects.html", label: "研究計畫" },
-  { id: "members", href: "members.html", label: "團隊成員" },
-  { id: "publications", href: "publications.html", label: "成果發表" },
-  { id: "gallery", href: "gallery.html", label: "活動花絮" },
-  { id: "pi", href: "pi.html", label: "主持人" }
+  { key: "index", label: "首頁", href: "index.html" },
+  { key: "research", label: "研究主軸", href: "research.html" },
+  { key: "projects", label: "研究計畫", href: "projects.html" },
+  { key: "publications", label: "成果發表", href: "publications.html" },
+  { key: "members", label: "團隊成員", href: "members.html" },
+  { key: "gallery", label: "活動花絮", href: "gallery.html" },
+  { key: "pi", label: "主持人", href: "pi.html" },
+  { key: "contact", label: "聯絡我們", href: "index.html#contact" }
 ];
 
-const LOGO_SVG = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-  <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-  <path d="M12 7.6v7.2M8.4 11.2h7.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-</svg>`;
+/* --------------------------------------------------------------------------
+   Templates
+   -------------------------------------------------------------------------- */
+function renderHeader(activePage) {
+  const navLinks = NAV_ITEMS.map((item) => {
+    const isActive = item.key === activePage;
+    return `<li><a class="nav-link${isActive ? " active" : ""}" href="${item.href}"${isActive ? ' aria-current="page"' : ""}>${item.label}</a></li>`;
+  }).join("");
 
-function initLayout(activePage) {
-  const gradientDefs = document.createElement("div");
-  gradientDefs.setAttribute("aria-hidden", "true");
-  gradientDefs.innerHTML = `<svg width="0" height="0" style="position:absolute"><defs>
-    <linearGradient id="grad-ci" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#00e3e3"/>
-      <stop offset="1" stop-color="#6a6aff"/>
-    </linearGradient>
-  </defs></svg>`;
-  document.body.prepend(gradientDefs);
-
-  const navLinks = NAV_ITEMS.map(
-    (item) =>
-      `<a href="${item.href}" ${item.id === activePage ? "data-active" : ""}>${item.label}</a>`
-  ).join("");
-
-  const header = document.createElement("header");
-  header.className = "site-header glass";
-  header.innerHTML = `
-    <a class="brand" href="index.html" aria-label="回到首頁">
-      <span class="brand-mark">${LOGO_SVG}</span>
-      <span class="brand-text">
-        <strong>智慧醫療轉譯及創新實驗室</strong>
-        <small>SMART HEALTH TRANSLATION &amp; INNOVATION LAB</small>
+  return `
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href="index.html">
+      <span class="site-header__logo">${LOGO_SVG}</span>
+      <span class="site-header__brandtext">
+        <span class="site-header__name">${SITE.nameZh}</span>
+        <span class="site-header__name-en mono-en">${SITE.nameEn}</span>
       </span>
     </a>
-    <nav class="nav" aria-label="主要導覽">${navLinks}</nav>
-    <button class="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false"><span></span></button>
-  `;
-  document.body.prepend(header);
+    <button type="button" class="hamburger" id="hamburger-btn" aria-expanded="false" aria-label="開啟導覽選單" aria-controls="site-nav">
+      <span class="hamburger__line"></span>
+      <span class="hamburger__line"></span>
+      <span class="hamburger__line"></span>
+    </button>
+    <nav class="site-nav" id="site-nav">
+      <ul class="site-nav__list">
+        ${navLinks}
+      </ul>
+      <a class="btn btn-primary btn-cta" href="index.html#contact">加入我們</a>
+    </nav>
+  </div>
+</header>`;
+}
 
-  const mobileNav = document.createElement("nav");
-  mobileNav.className = "mobile-nav glass";
-  mobileNav.setAttribute("aria-label", "行動版導覽");
-  mobileNav.innerHTML = navLinks;
-  header.after(mobileNav);
+function renderFooter() {
+  const quickLinks = NAV_ITEMS.slice(0, 7)
+    .map((item) => `<li><a href="${item.href}">${item.label}</a></li>`)
+    .join("");
 
-  const toggle = header.querySelector(".menu-toggle");
-  toggle.addEventListener("click", () => {
-    const open = mobileNav.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", String(open));
-  });
-
-  window.addEventListener("scroll", () => {
-    header.dataset.elevated = String(window.scrollY > 12);
-  }, { passive: true });
-
-  const footer = document.createElement("footer");
-  footer.className = "site-footer";
-  footer.innerHTML = `
-    <div class="blob blob-violet" style="width:340px;height:340px;right:-120px;top:-140px;opacity:.25"></div>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-contact">
-          <h3>智慧醫療轉譯及創新實驗室</h3>
-          <p class="mono-label" style="color:rgba(255,255,255,.4);margin:0 0 14px">SMART HEALTH TRANSLATION &amp; INNOVATION LAB</p>
-          <p><strong>主持人：</strong>賀彥中 助理教授</p>
-          <p><strong>單位：</strong>國防醫學大學護理學系</p>
-          <p><strong>Email：</strong><a href="mailto:nokia3350g@gmail.com">nokia3350g@gmail.com</a></p>
-        </div>
-        <div>
-          <h3>快速連結</h3>
-          <div class="footer-links">${NAV_ITEMS.map((i) => `<a href="${i.href}">${i.label}</a>`).join("")}</div>
-        </div>
-        <div>
-          <h3>友好連結</h3>
-          <div class="footer-links friend-links">
-            <a href="https://bobyu89.github.io/sung-lab-website/index.html" target="_blank" rel="noopener">護理創新及專科訓練研究室<small>宋建美 助理教授</small></a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© <span id="footer-year"></span> Smart Health Translation and Innovation Lab</span>
-        <span>[MEASURE.MONITOR.TRANSLATE.IMPLEMENT]</span>
-      </div>
+  return `
+<footer class="site-footer section--tint">
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <span class="site-footer__logo">${LOGO_SVG}</span>
+      <p class="site-footer__name">${SITE.nameZh}</p>
+      <p class="site-footer__tagline">${SITE.tagline}</p>
     </div>
-  `;
-  document.body.append(footer);
-  footer.querySelector("#footer-year").textContent = new Date().getFullYear();
-
-  const toTop = document.createElement("button");
-  toTop.className = "to-top";
-  toTop.setAttribute("aria-label", "回到頂部");
-  toTop.textContent = "↑";
-  toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-  document.body.append(toTop);
-  window.addEventListener("scroll", () => {
-    toTop.classList.toggle("show", window.scrollY > 600);
-  }, { passive: true });
-
-  initLightboxDom();
-  if (typeof initIcons === "function") initIcons();
+    <div class="site-footer__contact">
+      <h3>聯絡資訊</h3>
+      <p>${SITE.pi}</p>
+      <p>${SITE.dept}</p>
+      <p><a href="mailto:${SITE.email}">${SITE.email}</a></p>
+    </div>
+    <div class="site-footer__links">
+      <h3>快速連結</h3>
+      <ul>
+        ${quickLinks}
+      </ul>
+    </div>
+    <div class="site-footer__links">
+      <h3>友好連結</h3>
+      <ul>
+        <li><a href="https://bobyu89.github.io/sung-lab-website/" target="_blank" rel="noopener">護理創新及專科訓練研究室<span class="friend-sub">宋建美 助理教授</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <p class="site-footer__copyright">© 2026 ${SITE.nameZh} Smart Health Translation and Innovation Lab</p>
+  </div>
+</footer>`;
 }
 
-let lightboxEl = null;
-
-function initLightboxDom() {
-  lightboxEl = document.createElement("div");
-  lightboxEl.className = "lightbox";
-  lightboxEl.setAttribute("role", "dialog");
-  lightboxEl.setAttribute("aria-label", "照片檢視");
-  lightboxEl.innerHTML = `
-    <button class="lightbox-close" aria-label="關閉">✕</button>
-    <img alt="" />
-    <p class="lightbox-caption"></p>
-  `;
-  document.body.append(lightboxEl);
-  const close = () => lightboxEl.classList.remove("open");
-  lightboxEl.addEventListener("click", (e) => {
-    if (e.target === lightboxEl || e.target.classList.contains("lightbox-close")) close();
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
-  });
+function renderLightbox() {
+  return `
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox__backdrop" data-lightbox-close></div>
+  <figure class="lightbox__content">
+    <img class="lightbox__img" id="lightbox-img" src="" alt="">
+    <figcaption class="lightbox__caption" id="lightbox-caption"></figcaption>
+  </figure>
+  <button type="button" class="lightbox__close" aria-label="關閉燈箱" data-lightbox-close>&times;</button>
+</div>`;
 }
 
+/* --------------------------------------------------------------------------
+   initLayout — injects header, footer, and lightbox DOM; wires interactions
+   -------------------------------------------------------------------------- */
+function initLayout(activePage) {
+  document.body.insertAdjacentHTML("afterbegin", renderHeader(activePage));
+  document.body.insertAdjacentHTML("beforeend", renderFooter());
+  document.body.insertAdjacentHTML("beforeend", renderLightbox());
+
+  const hamburger = document.getElementById("hamburger-btn");
+  const nav = document.getElementById("site-nav");
+
+  if (hamburger && nav) {
+    hamburger.addEventListener("click", () => {
+      const expanded = hamburger.getAttribute("aria-expanded") === "true";
+      hamburger.setAttribute("aria-expanded", String(!expanded));
+      nav.classList.toggle("site-nav--open", !expanded);
+      hamburger.setAttribute("aria-label", expanded ? "開啟導覽選單" : "關閉導覽選單");
+    });
+
+    nav.querySelectorAll(".nav-link, .btn-cta").forEach((link) => {
+      link.addEventListener("click", () => {
+        hamburger.setAttribute("aria-expanded", "false");
+        hamburger.setAttribute("aria-label", "開啟導覽選單");
+        nav.classList.remove("site-nav--open");
+      });
+    });
+  }
+
+  const lightbox = document.getElementById("lightbox");
+  if (lightbox) {
+    lightbox.querySelectorAll("[data-lightbox-close]").forEach((el) => {
+      el.addEventListener("click", closeLightbox);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !lightbox.hasAttribute("hidden")) {
+        closeLightbox();
+      }
+    });
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Lightbox — open/close
+   -------------------------------------------------------------------------- */
 function openLightbox(src, caption) {
-  if (!lightboxEl) return;
-  const img = lightboxEl.querySelector("img");
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightbox-img");
+  const captionEl = document.getElementById("lightbox-caption");
+  if (!lightbox || !img || !captionEl) return;
+
   img.src = src;
-  img.alt = caption || "活動照片";
-  lightboxEl.querySelector(".lightbox-caption").textContent = caption || "";
-  lightboxEl.classList.add("open");
+  img.alt = caption || "";
+  captionEl.textContent = caption || "";
+  lightbox.removeAttribute("hidden");
+  document.body.classList.add("lightbox-open");
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightbox-img");
+  if (!lightbox) return;
+
+  lightbox.setAttribute("hidden", "");
+  document.body.classList.remove("lightbox-open");
+  if (img) img.src = "";
 }
