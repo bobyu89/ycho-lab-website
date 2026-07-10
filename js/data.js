@@ -24,7 +24,7 @@ const SITE = {
    填入後即自動串接，留空則顯示內建備用資料。設定步驟見 README-維護說明.md
    ========================================================================== */
 const CONFIG = {
-  SHEET_ID: "1RExVzjwIOxZ1f3GjAb6-Lc758Faz0KjoU9j56q8PZ8U",        // 雲端「網站後台-消息與活動（含英文欄）」試算表（最新消息）
+  SHEET_ID: "12Zj-bXnhK9qHpGJYn4xbB3npSPsTUV7amUdijw8qdWU",        // 雲端「網站後台-消息與活動（含英文欄）v2」試算表（最新消息）
   EVENTS_SHEET_ID: "1f8JzHwbDItOId105OcyBv4WGbWBAO5NlDOVn8FQk4VQ", // 雲端「網站後台-重要活動」試算表
   DRIVE_FOLDER_ID: "1Vi93_Xw7oruDRUguRs4q-mFFfYGNtbAD",            // 雲端「實驗室網站/活動照片」資料夾
   DRIVE_API_KEY: "AIzaSyD6XJELxWdiiCTPNgHiJrT-09n-X6clCYc"         // 限制 referrer：bobyu89.github.io、localhost:8788
@@ -34,6 +34,7 @@ const CONFIG = {
    FALLBACK data — shown whenever CONFIG is empty or a fetch/parse fails.
    ========================================================================== */
 const FALLBACK_NEWS = [
+  { date: "2026-07-10", category: "榮譽", content: "本實驗室國科會計畫研究成果通過國防醫學大學第 81 次智審會，獲同意補助申請中華民國發明專利。", content_en: "Our NSTC-funded research results passed NDMU's 81st Intellectual Property Review Committee, with approved funding support for filing an R.O.C. (Taiwan) invention patent.", link: "" },
   { date: "2026-08-11", category: "公告", content: "研究生李妍鋅論文計畫口試將於 8 月 11 日（二）11:00–13:00 舉行。", content_en: "Graduate student Yen-Hsin Lee's thesis proposal defense: Tuesday, Aug 11, 11:00–13:00.", link: "" },
   { date: "2026-08-07", category: "公告", content: "研究生游明勳論文計畫口試將於 8 月 7 日（五）11:00–13:00 舉行。", content_en: "Graduate student Ming-Hsun Yu's thesis proposal defense: Friday, Aug 7, 11:00–13:00.", link: "" },
   { date: "2026-07-01", category: "公告", content: "跨裝置失樂感趨勢視覺化平台研究計畫，延續計劃通過。", content_en: "The follow-up grant for the cross-device anhedonia trend visualization platform has been approved.", link: "" },
