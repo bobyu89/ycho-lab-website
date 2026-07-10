@@ -1,26 +1,31 @@
 /* ==========================================================================
    YCHO Lab Website — Design System
    智慧醫療轉譯及創新實驗室 (Smart Health Translation & Innovation Lab)
-   版面與元件結構與 sung-lab-website 保持一致，僅替換品牌色票（青／紫）。
+   版面與元件結構與 sung-lab-website 保持一致，僅替換品牌色票。
+   色彩系統：深藍靛（主品牌）＋智慧藍（次品牌）＋臨床綠（監測）＋創新紫（AI）
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    1. Variables
    -------------------------------------------------------------------------- */
 :root {
-  --cyan: #00E3E3;
-  --cyan-deep: #007A7A;
-  --violet: #6A6AFF;
-  --lavender: #E9E9FF;
-  --tint: #ECFAFA;
-  --violet-deep: #4646D8;
+  --brand: #263B80;      /* 主品牌 深藍靛 — Logo、主標題、主要按鈕 */
+  --blue: #4568C8;       /* 次品牌 智慧藍 — 連結、圖示、卡片標記 */
+  --teal: #2AAE9B;       /* 臨床綠 — 監測狀態、資料節點、成功訊號 */
+  --purple: #7668D8;     /* 創新紫 — AI、創新、教育相關元素 */
+  --blue-bg: #EEF4FF;    /* 冰河藍 — 藍色卡片背景 */
+  --teal-bg: #ECF8F5;    /* 薄荷白綠 — 臨床與轉譯區塊 */
+  --purple-bg: #F3F0FF;  /* 淡薰衣草 — AI 與創新區塊 */
+  --tint: #F7F9FC;       /* 冷調霧白 — 區塊交錯背景 */
+  --border: #DCE3EE;     /* 冷灰藍 — 卡片、分隔線 */
   --white: #FFFFFF;
-  --gray: #6B7280;
-  --ink: #374151;
+  --gray: #63708A;       /* 次文字 灰藍 */
+  --ink: #17223B;        /* 主文字 深藍黑 */
+  --ecg: var(--teal);    /* ECG 描線動畫顏色（js/micro.js 讀取） */
   --radius: 20px;
   --radius-pill: 999px;
-  --shadow-card: 0 10px 30px rgba(0, 158, 158, 0.14);
-  --grad-brand: linear-gradient(135deg, #00E3E3, #6A6AFF);
+  --shadow-card: 0 10px 30px rgba(38, 59, 128, 0.10);
+  --grad-brand: linear-gradient(135deg, #4568C8, #7668D8);
   --font-sans: "Noto Sans TC", "Inter", system-ui, sans-serif;
   --font-en: "Inter", "Noto Sans TC", sans-serif;
 }
@@ -78,7 +83,7 @@ button {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.8rem;
-  color: var(--cyan-deep);
+  color: var(--blue);
 }
 
 /* --------------------------------------------------------------------------
@@ -94,7 +99,7 @@ button {
   padding: 80px 0;
 }
 
-.section--cyan {
+.section--tint {
   background: var(--tint);
 }
 
@@ -110,8 +115,8 @@ button {
   padding: 32px;
 }
 
-.card--lavender {
-  background: var(--lavender);
+.card--soft {
+  background: var(--teal-bg);
 }
 
 /* Buttons */
@@ -129,7 +134,7 @@ button {
 }
 
 .btn-primary {
-  background: var(--cyan-deep);
+  background: var(--brand);
   color: var(--white);
 }
 
@@ -141,8 +146,8 @@ button {
 
 .btn-outline {
   background: transparent;
-  color: var(--violet-deep);
-  border: 2px solid var(--violet);
+  color: var(--brand);
+  border: 2px solid var(--blue);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -161,10 +166,8 @@ button {
   display: inline-block;
   padding: 6px 16px;
   border-radius: var(--radius-pill);
-  background: var(--lavender);
-  /* Darkened from --violet-deep locally (not the shared token) to meet WCAG AA
-     4.5:1 for small text against this chip's #E9E9FF background. */
-  color: #4040C8;
+  background: var(--blue-bg);
+  color: var(--brand);
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -195,7 +198,7 @@ img.avatar {
   align-items: center;
   justify-content: center;
   min-height: 160px;
-  border: 2px dashed var(--violet);
+  border: 2px dashed var(--blue);
   border-radius: var(--radius);
   color: var(--gray);
   font-size: 0.9rem;
@@ -222,7 +225,7 @@ img.avatar {
 
 /* Dotted pattern background */
 .dots {
-  background-image: radial-gradient(var(--cyan) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(var(--blue) 1.5px, transparent 1.5px);
   background-size: 18px 18px;
   opacity: 0.25;
 }
@@ -234,7 +237,7 @@ img.avatar {
   background-repeat: repeat-x;
   background-position: center;
   background-size: 300px 40px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='40' viewBox='0 0 300 40'%3E%3Cpolyline points='0,20 60,20 75,5 90,35 105,20 300,20' fill='none' stroke='%2300E3E3' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='40' viewBox='0 0 300 40'%3E%3Cpolyline points='0,20 60,20 75,5 90,35 105,20 300,20' fill='none' stroke='%232AAE9B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 /* --------------------------------------------------------------------------
@@ -343,7 +346,7 @@ img.avatar {
 
 .nav-link.active,
 .nav-link:hover {
-  color: var(--cyan-deep);
+  color: var(--brand);
 }
 
 .nav-link.active::after {
@@ -358,7 +361,7 @@ img.avatar {
 }
 
 .btn-cta {
-  background: var(--violet-deep);
+  background: var(--purple);
   color: var(--white);
   padding: 10px 22px;
   font-size: 0.92rem;
@@ -383,7 +386,7 @@ img.avatar {
     align-items: stretch;
     gap: 0;
     background: var(--white);
-    box-shadow: 0 12px 24px rgba(55, 65, 81, 0.1);
+    box-shadow: 0 12px 24px var(--border);
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
@@ -479,7 +482,7 @@ img.avatar {
 .site-footer__contact h3,
 .site-footer__links h3 {
   font-size: 0.95rem;
-  color: var(--cyan-deep);
+  color: var(--brand);
   margin: 0 0 12px;
 }
 
@@ -501,11 +504,11 @@ img.avatar {
 }
 
 .site-footer__links a:hover {
-  color: var(--cyan-deep);
+  color: var(--blue);
 }
 
 .site-footer__copyright {
-  border-top: 1px solid rgba(55, 65, 81, 0.1);
+  border-top: 1px solid var(--border);
   padding-top: 20px;
   font-size: 0.82rem;
   color: var(--gray);
@@ -668,12 +671,12 @@ body.lightbox-open {
   color: var(--ink);
 }
 
-.hero__title .hl-pink {
-  color: var(--cyan-deep);
+.hero__title .hl-blue {
+  color: var(--blue);
 }
 
-.hero__title .hl-orange {
-  color: var(--violet-deep);
+.hero__title .hl-purple {
+  color: var(--purple);
 }
 
 .hero__subtitle {
@@ -793,7 +796,7 @@ body.lightbox-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--lavender);
+  background: var(--blue-bg);
 }
 
 .focus-card__icon svg {
@@ -867,7 +870,7 @@ body.lightbox-open {
 
 /* 消息卡可點擊展開全文 */
 .news-card { cursor: pointer; }
-.news-card:focus-visible { outline: 2px solid var(--cyan-deep); outline-offset: 2px; }
+.news-card:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
 .news-card--open .news-card__content {
   display: block;
   -webkit-line-clamp: unset;
@@ -877,26 +880,26 @@ body.lightbox-open {
 /* Chip color variants — category mapping (all keep dark text).
    Text colors below are darkened locally from --cyan-deep/--violet-deep/--gray
    (not the shared tokens) so each variant meets WCAG AA 4.5:1 against its
-   own background; hue identity (cyan/violet/gray) is unchanged. */
+   own background so each variant meets WCAG AA 4.5:1. */
 .chip--honor {
-  background: var(--tint);
-  color: #006B6B;
+  background: var(--purple-bg);
+  color: #5240B8;
 }
 
 .chip--pub {
-  background: #D9F6F6;
-  color: #006262;
+  background: var(--blue-bg);
+  color: #33509F;
 }
 
 .chip--event {
-  background: var(--lavender);
-  color: #4040C8;
+  background: var(--teal-bg);
+  color: #157A6A;
 }
 
 .chip--announce {
   background: transparent;
-  color: #4B5563;
-  border: 1.5px solid #4B5563;
+  color: #4A5670;
+  border: 1.5px solid #4A5670;
 }
 
 @media (max-width: 1023px) {
@@ -914,7 +917,7 @@ body.lightbox-open {
 .news-view-all-btn {
   background: transparent;
   border: none;
-  color: var(--cyan-deep);
+  color: var(--blue);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -925,7 +928,7 @@ body.lightbox-open {
 }
 
 .news-view-all-btn:hover {
-  color: var(--violet-deep);
+  color: var(--brand);
 }
 
 /* --------------------------------------------------------------------------
@@ -952,7 +955,7 @@ body.lightbox-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--lavender);
+  background: var(--blue-bg);
   margin-bottom: 8px;
 }
 
@@ -970,7 +973,7 @@ body.lightbox-open {
 
 .metric-card__number--text {
   font-size: 1.35rem;
-  color: var(--cyan-deep);
+  color: var(--brand);
 }
 
 .metric-card__label {
@@ -1026,7 +1029,7 @@ body.lightbox-open {
 
 .team-card__role {
   margin: 0;
-  color: var(--cyan-deep);
+  color: var(--blue);
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -1074,7 +1077,7 @@ body.lightbox-open {
 }
 .member-card__role {
   margin: 4px 0 0;
-  color: var(--cyan-deep);
+  color: var(--blue);
   font-size: 0.85rem;
 }
 .member-card__block {
@@ -1136,7 +1139,7 @@ body.lightbox-open {
 }
 
 .form-required {
-  color: var(--violet-deep);
+  color: var(--purple);
 }
 
 .form-field input,
@@ -1147,7 +1150,7 @@ body.lightbox-open {
   color: var(--ink);
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1.5px solid rgba(107, 114, 128, 0.3);
+  border: 1.5px solid var(--border);
   background: var(--white);
   resize: vertical;
 }
@@ -1155,13 +1158,13 @@ body.lightbox-open {
 .form-field input:focus,
 .form-field select:focus,
 .form-field textarea:focus {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--blue);
   outline-offset: 1px;
 }
 
 .form-error {
   margin: 0;
-  color: var(--violet-deep);
+  color: var(--purple);
   font-size: 0.82rem;
 }
 
@@ -1247,7 +1250,7 @@ body.lightbox-open {
 .pub-item__index {
   flex-shrink: 0;
   width: 32px;
-  color: var(--cyan-deep);
+  color: var(--blue);
   font-weight: 700;
   font-family: var(--font-en);
 }
@@ -1286,7 +1289,7 @@ body.lightbox-open {
 .pub-footnote {
   margin-top: 40px;
   padding-top: 20px;
-  border-top: 1px solid rgba(107, 114, 128, 0.2);
+  border-top: 1px solid var(--border);
   color: var(--gray);
   font-size: 0.88rem;
   text-align: center;
@@ -1314,12 +1317,12 @@ body.lightbox-open {
   text-align: left;
   font-size: 0.9rem;
   vertical-align: top;
-  border-bottom: 1px solid rgba(107, 114, 128, 0.15);
+  border-bottom: 1px solid var(--border);
 }
 
 .projects-table th {
-  background: var(--tint);
-  color: var(--cyan-deep);
+  background: var(--blue-bg);
+  color: var(--brand);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -1360,7 +1363,7 @@ body.lightbox-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--lavender);
+  background: var(--blue-bg);
   flex-shrink: 0;
 }
 
@@ -1481,7 +1484,7 @@ body.lightbox-open {
 
 .member-intro__role {
   margin: 0;
-  color: var(--cyan-deep);
+  color: var(--blue);
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -1489,7 +1492,7 @@ body.lightbox-open {
 .member-intro__body h3 {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--cyan-deep);
+  color: var(--brand);
   margin: 0 0 12px;
 }
 

@@ -7,14 +7,14 @@
 
 /* --------------------------------------------------------------------------
    Logo — hexagon with medical cross
-   Gradient: #00E3E3 -> #6A6AFF
+   Gradient: #263B80 -> #7668D8
    -------------------------------------------------------------------------- */
 const LOGO_SVG = `
 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="智慧醫療轉譯及創新實驗室 Logo">
   <defs>
     <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00E3E3"/>
-      <stop offset="100%" stop-color="#6A6AFF"/>
+      <stop offset="0%" stop-color="#263B80"/>
+      <stop offset="100%" stop-color="#7668D8"/>
     </linearGradient>
   </defs>
   <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" fill="none" stroke="url(#logo-grad)" stroke-width="1.6" stroke-linejoin="round"/>
