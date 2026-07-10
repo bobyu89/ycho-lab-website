@@ -174,6 +174,23 @@ async function fetchEvents() {
   }
 }
 
+function sortPhotosByCaptionDate(photos) {
+  /* 檔名（＝說明文字）開頭含 YYYY-MM-DD 時依活動日期新到舊排序；
+     沒有日期的照片維持原相對順序、排在有日期者之後。 */
+  const dateOf = (p) => {
+    const m = String(p.caption || "").match(/(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})/);
+    return m ? new Date(+m[1], +m[2] - 1, +m[3]).getTime() : null;
+  };
+  return photos.slice().sort((a, b) => {
+    const da = dateOf(a);
+    const db = dateOf(b);
+    if (da === null && db === null) return 0;
+    if (da === null) return 1;
+    if (db === null) return -1;
+    return db - da;
+  });
+}
+
 async function fetchPhotos(limit) {
   try {
     if (!CONFIG.DRIVE_FOLDER_ID || !CONFIG.DRIVE_API_KEY) throw new Error("no drive configured");
@@ -188,6 +205,7 @@ async function fetchPhotos(limit) {
       caption: f.name.replace(/\.[^.]+$/, "")
     }));
     if (!photos.length) throw new Error("empty folder");
+    photos = sortPhotosByCaptionDate(photos);
     if (limit) photos = photos.slice(0, limit);
     return photos;
   } catch {
