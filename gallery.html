@@ -50,6 +50,8 @@
         <span class="mono-en">MOMENTS</span>
       </div>
 
+      <div class="gallery-filter" id="gallery-filter" role="group" aria-label="照片分類篩選"></div>
+
       <div class="photo-wall" id="photo-wall">
         <!-- renderPhotoWall() populates this from fetchPhotos(0) -->
       </div>
@@ -73,14 +75,56 @@
         .replace(/'/g, "&#39;");
     }
 
+    /* 照片依檔名（＝說明文字）關鍵字自動分類：口試／研討會／報告，其餘歸「其他」 */
+    const GALLERY_TAGS = [
+      { key: "all", zh: "全部", en: "All" },
+      { key: "defense", zh: "口試", en: "Defense", re: /口試/i },
+      { key: "conference", zh: "研討會", en: "Conference", re: /(研討會|會議|論壇|年會|eafons|amee|inrc|icn|wans|sigma|congress|forum|conference)/i },
+      { key: "talk", zh: "報告", en: "Talk", re: /(報告|發表|演講|seminar|presentation)/i },
+      { key: "other", zh: "其他", en: "Other" }
+    ];
+    const IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+
+    function classifyPhoto(caption) {
+      for (const tag of GALLERY_TAGS) {
+        if (tag.re && tag.re.test(caption || "")) return tag.key;
+      }
+      return "other";
+    }
+
+    function renderFilter(counts) {
+      const bar = document.getElementById('gallery-filter');
+      if (!bar) return;
+      const available = GALLERY_TAGS.filter((t) => t.key === "all" || counts[t.key]);
+      if (available.length <= 2) { bar.hidden = true; return; } /* 只有「全部＋單一類」時不顯示篩選 */
+      bar.innerHTML = available
+        .map((t) => `<button type="button" class="chip gallery-filter__chip${t.key === "all" ? " chip--active" : ""}" data-tag="${t.key}">${IS_EN ? t.en : t.zh}</button>`)
+        .join('');
+      bar.addEventListener('click', (e) => {
+        const btn = e.target.closest('.gallery-filter__chip');
+        if (!btn) return;
+        bar.querySelectorAll('.gallery-filter__chip').forEach((c) => c.classList.remove('chip--active'));
+        btn.classList.add('chip--active');
+        const tag = btn.dataset.tag;
+        document.querySelectorAll('.photo-wall__item').forEach((item) => {
+          item.style.display = (tag === "all" || item.dataset.tag === tag) ? "" : "none";
+        });
+      });
+    }
+
     async function renderPhotoWall() {
       const wall = document.getElementById('photo-wall');
       if (!wall) return;
       const photos = await fetchPhotos(0);
-      wall.innerHTML = photos.map((photo, i) => `
-<button type="button" class="photo-wall__item reveal" data-reveal-group="photo" data-src="${escapeHtml(photo.src)}" data-caption="${escapeHtml(photo.caption)}" aria-label="放大檢視：${escapeHtml(photo.caption)}">
+      const counts = {};
+      wall.innerHTML = photos.map((photo, i) => {
+        const tag = classifyPhoto(photo.caption);
+        counts[tag] = (counts[tag] || 0) + 1;
+        return `
+<button type="button" class="photo-wall__item reveal" data-reveal-group="photo" data-tag="${tag}" data-src="${escapeHtml(photo.src)}" data-caption="${escapeHtml(photo.caption)}" aria-label="${IS_EN ? "Enlarge: " : "放大檢視："}${escapeHtml(photo.caption)}">
   <img src="${escapeHtml(photo.thumb)}" alt="${escapeHtml(photo.caption)}" loading="lazy">
-</button>`).join('');
+</button>`;
+      }).join('');
 
       wall.querySelectorAll('.photo-wall__item').forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -88,6 +132,7 @@
         });
       });
 
+      renderFilter(counts);
       initReveal();
     }
 
