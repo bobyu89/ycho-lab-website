@@ -9,8 +9,11 @@ const SITE = {
   nameZh: "智慧醫療轉譯及創新實驗室",
   nameEn: "Smart Health Translation & Innovation Lab",
   tagline: "以護理科學為根、以數位量測為方法，發展可解釋、可落地、可擴散的智慧醫療與心理健康創新",
+  taglineEn: "Rooted in nursing science, powered by digital measurement — building explainable, deployable, and scalable smart-health innovation",
   pi: "賀彥中 助理教授",
+  piEn: "Yen-Chung Ho, PhD, Assistant Professor",
   dept: "國防醫學大學護理學系",
+  deptEn: "Department of Nursing, National Defense Medical University",
   email: "nokia3350g@gmail.com",
   scholar: "https://scholar.google.com/citations?user=sa65IacAAAAJ&hl=zh-TW",
   stats: { journal: 7, conference: 5, projects: 5, members: 4 }
@@ -31,10 +34,14 @@ const CONFIG = {
    FALLBACK data — shown whenever CONFIG is empty or a fetch/parse fails.
    ========================================================================== */
 const FALLBACK_NEWS = [
-  { date: "2026-01-01", category: "公告", content: "「照護產業科技化指數與指引研究案」（經濟部產業發展署／資策會）正式啟動。", link: "" },
+  { date: "2026-08-11", category: "公告", content: "研究生李妍鋅論文計畫口試將於 8 月 11 日（二）11:00–13:00 舉行。", content_en: "Graduate student Yen-Hsin Lee's thesis proposal defense: Tuesday, Aug 11, 11:00–13:00.", link: "" },
+  { date: "2026-08-07", category: "公告", content: "研究生游明勳論文計畫口試將於 8 月 7 日（五）11:00–13:00 舉行。", content_en: "Graduate student Ming-Hsun Yu's thesis proposal defense: Friday, Aug 7, 11:00–13:00.", link: "" },
+  { date: "2026-07-01", category: "公告", content: "跨裝置失樂感趨勢視覺化平台研究計畫，延續計劃通過。", content_en: "The follow-up grant for the cross-device anhedonia trend visualization platform has been approved.", link: "" },
+  { date: "2026-01-01", category: "公告", content: "「照護產業科技化指數與指引研究案」（經濟部產業發展署／資策會）正式啟動。", content_en: "The Care Industry Technology Index and Guidelines project (Industrial Development Administration, MOEA / III) has officially launched.", link: "" },
   { date: "2025-08-01", category: "公告", content: "國科會計畫「基於移動平均理論與生態瞬時評估法之失樂感個人化動態監測系統發展與應用」開始執行。", link: "" },
   { date: "2025-06-15", category: "發表", content: "跨裝置失樂感趨勢視覺化平台研究計畫書（Part I）刊登於 JMIR Research Protocols。", link: "" },
   { date: "2025-05-20", category: "發表", content: "AI 虛擬人增強遊戲式教學提升護理學生情緒智能之研究計畫書刊登於 JMIR Research Protocols。", link: "" },
+  { date: "2025-04-01", category: "榮譽", content: "本實驗室國科會計畫延伸研究成果之美國發明專利臨時案通過。", content_en: "A U.S. provisional patent application derived from our NSTC-funded research was successfully filed.", link: "" },
   { date: "2025-02-10", category: "活動", content: "實驗室成員於 EAFONS 2025 發表體外反搏（EECP）應用於壓力管理之先驅研究。", link: "" },
   { date: "2024-10-01", category: "發表", content: "癌症病人憂鬱症狀盛行率與相關因素研究刊登於 Current Oncology。", link: "" },
   { date: "2024-05-01", category: "發表", content: "SHAPS 切分值與預測因子研究（臨床與校園場域比較）刊登於 BJPsych Open。", link: "" }
@@ -137,6 +144,7 @@ async function fetchNews() {
         date: normalizeDate(r.date),
         category: String(r.category || "公告").trim(),
         content: String(r.content),
+        content_en: String(r.content_en || ""),
         link: String(r.link || "")
       }))
       .sort((a, b) => b.date.localeCompare(a.date));

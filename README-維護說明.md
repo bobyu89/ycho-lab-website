@@ -10,13 +10,14 @@
 
 **📊 網站後台-消息與活動**（最新消息）：
 
-| date | category | content | link |
-|---|---|---|---|
-| 2026-07-01 | 發表 | 論文刊登於 JMIR Research Protocols | https://doi.org/... |
+| date | category | content | content_en | link |
+|---|---|---|---|---|
+| 2026-07-01 | 發表 | 論文刊登於 JMIR Research Protocols | Paper published in JMIR Research Protocols | https://doi.org/... |
 
 - `date`：日期，建議 YYYY-MM-DD
 - `category`：填「榮譽」「發表」「活動」「公告」其中之一
 - `content`：消息內容（一句話）
+- `content_en`：選填，英文版消息；英文頁面優先顯示這欄，沒填就顯示中文
 - `link`：選填，相關連結
 
 新增一列、儲存，網站重新整理後就會更新。首頁預設顯示最新 3 則，點「查看全部」展開。
@@ -57,7 +58,12 @@ firebase deploy
 ```
 （需先安裝 Firebase CLI 並以專案帳號登入；每次改完程式碼或 CONFIG 後執行一次。GitHub Pages 版本則直接 push 到 GitHub 即可。）
 
-## 五、其他常見修改
+## 五、英文版頁面
+
+全站有對應的英文版（`en/` 資料夾），header 右側「EN／中文」按鈕互切。
+改中文頁內容時，記得同步修改 `en/` 下的對應頁面；最新消息的英文則由試算表 `content_en` 欄維護。
+
+## 六、其他常見修改
 
 | 想改什麼 | 改哪裡 |
 |---|---|
