@@ -69,4 +69,5 @@ firebase deploy
 | 成員 | `members.html` |
 | 老師簡介 | `pi.html` |
 | 配色 | `css/main.css` 最上方的 `:root` 變數 |
+| 微動畫（ECG 描線／標題逐字／圖示彈跳） | `js/micro.js`（動畫引擎為 `js/vendor/anime.umd.min.js`，anime.js v4） |
 | 老師照片 | 更換 `assets/pi-photo.jpg` |
