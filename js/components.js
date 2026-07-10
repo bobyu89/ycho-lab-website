@@ -55,7 +55,8 @@ const UI_STRINGS = {
     friendName: "護理創新及專科訓練研究室",
     friendSub: "宋建美 助理教授",
     friendHref: "https://bobyu89.github.io/sung-lab-website/",
-    navAria: "開啟導覽選單"
+    navAria: "開啟導覽選單",
+    back: "返回"
   },
   en: {
     cta: "Join Us",
@@ -67,7 +68,8 @@ const UI_STRINGS = {
     friendName: "Nursing Innovation & NP Training Lab",
     friendSub: "Dr. Chien-Mei Sung",
     friendHref: "https://bobyu89.github.io/sung-lab-website/en/",
-    navAria: "Open navigation menu"
+    navAria: "Open navigation menu",
+    back: "Back"
   }
 };
 
@@ -197,6 +199,25 @@ function initLayout(activePage, lang) {
   document.body.insertAdjacentHTML("afterbegin", renderHeader(activePage));
   document.body.insertAdjacentHTML("beforeend", renderFooter());
   document.body.insertAdjacentHTML("beforeend", renderLightbox());
+
+  /* 返回鍵 — 首頁以外的每一頁都注入，回上一頁（無歷史則回首頁） */
+  if (activePage !== "index" && activePage !== "contact") {
+    const t = UI_STRINGS[SITE_LANG];
+    const header = document.querySelector(".site-header");
+    const backHtml =
+      `<div class="page-back"><div class="container">` +
+      `<button type="button" class="back-link" id="page-back">` +
+      `<span class="back-link__arrow" aria-hidden="true">←</span>${t.back}</button>` +
+      `</div></div>`;
+    if (header) header.insertAdjacentHTML("afterend", backHtml);
+    const backBtn = document.getElementById("page-back");
+    if (backBtn) {
+      backBtn.addEventListener("click", () => {
+        if (window.history.length > 1) window.history.back();
+        else window.location.href = "index.html";
+      });
+    }
+  }
 
   const hamburger = document.getElementById("hamburger-btn");
   const nav = document.getElementById("site-nav");
