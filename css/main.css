@@ -829,6 +829,34 @@ body.lightbox-open {
   }
 }
 
+/* 插圖版領域圖示 — .focus-card__icon / .area-block__icon 內放 <img> 時使用 */
+.focus-card__icon--art {
+  width: 64px;
+  height: 64px;
+}
+
+.focus-card__icon--art,
+.area-block__icon--art {
+  background: transparent;
+}
+
+.focus-card__icon--art img,
+.area-block__icon--art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+/* 頁面內全寬插圖橫幅（pi.html） */
+.page-banner {
+  display: block;
+  width: 100%;
+  margin-top: 32px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
 /* --------------------------------------------------------------------------
    14. News grid (最新消息)
    -------------------------------------------------------------------------- */
