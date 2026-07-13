@@ -1,0 +1,27 @@
+name: Sync NSTC data
+on:
+  schedule:
+    - cron: "0 0 * * 1"   # 每週一 00:00 UTC = 台北 08:00
+  workflow_dispatch: {}     # GitHub 網頁可手動觸發
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run sync script
+        shell: pwsh
+        run: ./tools/sync-nstc.ps1
+      - name: Commit if changed
+        shell: bash
+        run: |
+          if [ -n "$(git status --porcelain data/nstc.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/nstc.json
+            git commit -m "chore: sync NSTC data $(date +%F)"
+            git push
+          else
+            echo "No changes."
+          fi
