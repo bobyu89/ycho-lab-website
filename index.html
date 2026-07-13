@@ -59,17 +59,17 @@
         <div class="stats-grid" data-stagger>
           <div class="glass stat-card reveal">
             <span class="icon-badge small" data-icon="publications" style="margin:0 auto 12px"></span>
-            <div class="stat-num"><span data-count="7">0</span></div>
+            <div class="stat-num"><span id="stat-journal" data-count="7">0</span></div>
             <div class="stat-label">Journal Papers</div>
           </div>
           <div class="glass stat-card reveal">
             <span class="icon-badge small" data-icon="collaboration" style="margin:0 auto 12px"></span>
-            <div class="stat-num"><span data-count="5">0</span></div>
+            <div class="stat-num"><span id="stat-conf" data-count="5">0</span></div>
             <div class="stat-label">Conference Papers</div>
           </div>
           <div class="glass stat-card reveal">
             <span class="icon-badge small" data-icon="projects" style="margin:0 auto 12px"></span>
-            <div class="stat-num"><span data-count="4">0</span></div>
+            <div class="stat-num"><span id="stat-projects" data-count="4">0</span></div>
             <div class="stat-label">Active Projects</div>
           </div>
           <div class="glass stat-card reveal">
@@ -201,6 +201,7 @@
   <script src="js/icons.js"></script>
   <script src="js/components.js"></script>
   <script src="js/data.js"></script>
+  <script src="js/enrich.js"></script>
   <script src="js/animations.js"></script>
   <script>
     initLayout("index");
@@ -231,11 +232,6 @@
       newsShown += next.length;
       document.getElementById("news-more-btn").style.display =
         newsShown >= allNews.length ? "none" : "";
-    }
-
-    function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, (c) =>
-        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     }
 
     async function boot() {
@@ -274,6 +270,12 @@
         fig.addEventListener("click", () => openLightbox(p.src, p.caption));
         grid.append(fig);
       });
+
+      const nstc = await fetchNstc();
+      const setCount = (id, n) => { const el = document.getElementById(id); if (el) el.dataset.count = String(n); };
+      setCount("stat-journal", nstc.publications.filter((p) => p.type === "期刊論文").length);
+      setCount("stat-conf", nstc.publications.filter((p) => p.type.includes("研討會")).length);
+      setCount("stat-projects", nstc.projects.length + EXTRA_PROJECTS.length);
 
       initReveal();
       initCounters();
