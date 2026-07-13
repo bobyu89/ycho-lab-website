@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications | Smart Health Translation &amp; Innovation Lab</title>
+  <meta name="description" content="Publications of the Smart Health Translation & Innovation Lab: journal articles and conference papers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+
+  <link rel="canonical" href="https://bobyu89.github.io/ycho-lab-website/en/publications.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Smart Health Translation & Innovation Lab">
+  <meta property="og:title" content="Publications | Smart Health Translation &amp; Innovation Lab">
+  <meta property="og:description" content="Publications of the Smart Health Translation & Innovation Lab: journal articles and conference papers.">
+  <meta property="og:url" content="https://bobyu89.github.io/ycho-lab-website/en/publications.html">
+  <meta property="og:image" content="https://bobyu89.github.io/ycho-lab-website/assets/hero-illustration.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Publications | Smart Health Translation &amp; Innovation Lab">
+  <meta name="twitter:description" content="Publications of the Smart Health Translation & Innovation Lab: journal articles and conference papers.">
+  <meta name="twitter:image" content="https://bobyu89.github.io/ycho-lab-website/assets/hero-illustration.jpg">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Smart Health Translation & Innovation Lab", "alternateName": "智慧醫療轉譯及創新實驗室", "url": "https://bobyu89.github.io/ycho-lab-website/", "logo": "https://bobyu89.github.io/ycho-lab-website/assets/hero-illustration.jpg", "image": "https://bobyu89.github.io/ycho-lab-website/assets/hero-illustration.jpg", "description": "Rooted in nursing science, powered by digital measurement — building explainable, deployable, scalable smart-health innovation.", "parentOrganization": {"@type": "CollegeOrUniversity", "name": "National Defense Medical University"}}</script>
+</head>
+<body>
+  <!-- ==========================================================================
+       Page hero
+       ========================================================================== -->
+  <section class="section section--tint page-hero">
+    <div class="dots" style="position: absolute; inset: 0; z-index: 0;"></div>
+    <div class="container page-hero__inner reveal">
+      <span class="mono-en page-hero__label">PUBLICATIONS</span>
+      <h1 class="page-hero__title">Publications</h1>
+      <p class="page-hero__desc">Journal articles and conference papers covering digital mental health, anhedonia monitoring, nursing education, and clinical translation.</p>
+      <div style="margin-top: 24px;">
+        <a class="btn btn-outline" href="https://scholar.google.com/citations?user=sa65IacAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener">Google Scholar Profile ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ecg-divider"></div>
+
+  <!-- ==========================================================================
+       期刊論文
+       ========================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">
+          <span class="section-header__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="pub-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#4568C8"/>
+                  <stop offset="100%" stop-color="#7668D8"/>
+                </linearGradient>
+              </defs>
+              <path d="M12 1.8l8.4 4.85v9.7L12 21.2l-8.4-4.85v-9.7L12 1.8z" fill="none" stroke="url(#pub-logo-grad)" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M12 7.6v7.2M8.4 11.2h7.2" fill="none" stroke="url(#pub-logo-grad)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Journal Articles
+        </h2>
+        <span class="mono-en">JOURNAL ARTICLES</span>
+      </div>
+
+      <ol class="pub-list reveal" id="journal-list"></ol>
+
+      <h3 class="pub-section-title reveal">Conference Papers</h3>
+      <ol class="pub-list reveal" id="conf-list"></ol>
+
+      <p class="pub-footnote reveal"><span id="sync-note">Synced from the NSTC Researcher Database</span>; see <a href="https://scholar.google.com/citations?user=sa65IacAAAAJ&amp;hl=en" target="_blank" rel="noopener" style="color: var(--blue); font-weight: 600;">Google Scholar</a> for the complete record.</p>
+    </div>
+  </section>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/enrich.js"></script>
+  <script src="../js/nstc-render.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/animations.js"></script>
+  <script>
+    initLayout('publications', 'en');
+    (async () => {
+      const data = await fetchNstc();
+      renderPublications(document.getElementById("journal-list"), document.getElementById("conf-list"), data, "en");
+      renderSyncNote(document.getElementById("sync-note"), data, "en");
+      initReveal();
+    })();
+  </script>
+  <script src="../js/vendor/anime.umd.min.js"></script>
+  <script src="../js/micro.js"></script>
+</body>
+</html>

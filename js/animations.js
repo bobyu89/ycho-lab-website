@@ -1,150 +1,109 @@
-const motionOK = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+/* ==========================================================================
+   YCHO Lab Website — Animation Engine
+   智慧醫療轉譯及創新實驗室 (Smart Health Translation & Innovation Lab)
+   initReveal(), initCounters()
+   ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   Shared: prefers-reduced-motion check
+   -------------------------------------------------------------------------- */
+function prefersReducedMotion() {
+  return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+/* --------------------------------------------------------------------------
+   initReveal — IntersectionObserver adds .in to .reveal elements.
+   Elements sharing a data-reveal-group are staggered 0.1s apart via
+   transition-delay. Under reduced motion, all .reveal elements are made
+   visible immediately with no delay/stagger.
+   -------------------------------------------------------------------------- */
 function initReveal() {
-  const els = document.querySelectorAll(".reveal");
-  if (!motionOK || !("IntersectionObserver" in window)) {
-    els.forEach((el) => el.classList.add("in"));
-    return;
-  }
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const group = el.closest("[data-stagger]");
-        if (group) {
-          const siblings = [...group.querySelectorAll(".reveal")];
-          el.style.transitionDelay = `${(siblings.indexOf(el) % 8) * 0.1}s`;
-        }
-        el.classList.add("in");
-        io.unobserve(el);
-      });
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-  );
-  els.forEach((el) => io.observe(el));
-}
+  const elements = document.querySelectorAll(".reveal");
+  if (!elements.length) return;
 
-function initCounters() {
-  const els = document.querySelectorAll("[data-count]");
-  if (!els.length) return;
-  const setFinal = (el) => (el.textContent = el.dataset.count);
-  if (!motionOK || !("IntersectionObserver" in window)) {
-    els.forEach(setFinal);
-    return;
-  }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      io.unobserve(el);
-      const target = parseInt(el.dataset.count, 10);
-      const t0 = performance.now();
-      const dur = 1400;
-      const tick = (t) => {
-        const p = Math.min(1, (t - t0) / dur);
-        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
+  if (prefersReducedMotion()) {
+    elements.forEach((el) => {
+      el.classList.add("in");
     });
-  }, { threshold: 0.4 });
-  els.forEach((el) => io.observe(el));
-}
-
-function initTimeline() {
-  const timelines = document.querySelectorAll(".timeline");
-  if (!timelines.length) return;
-  if (!motionOK || !("IntersectionObserver" in window)) {
-    timelines.forEach((el) => el.classList.add("in"));
     return;
   }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in");
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  timelines.forEach((el) => io.observe(el));
-}
 
-function initWave(canvas) {
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  let w = 0;
-  let h = 0;
-
-  function resize() {
-    const ratio = window.devicePixelRatio || 1;
-    w = canvas.clientWidth;
-    h = canvas.clientHeight;
-    canvas.width = Math.floor(w * ratio);
-    canvas.height = Math.floor(h * ratio);
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-  }
-
-  const ema = (x, phase) =>
-    h * 0.52 +
-    Math.sin(x * 0.045 + phase) * h * 0.2 +
-    Math.sin(x * 0.013 + phase * 0.6) * h * 0.14 +
-    Math.sin(x * 0.11 + phase * 1.7) * h * 0.05;
-
-  const avg = (x, phase) =>
-    h * 0.55 + Math.sin(x * 0.012 + phase * 0.5) * h * 0.12;
-
-  function drawFrame(phase) {
-    ctx.clearRect(0, 0, w, h);
-
-    ctx.beginPath();
-    for (let x = 0; x <= w; x += 3) {
-      const y = ema(x, phase);
-      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    }
-    ctx.strokeStyle = "#00e3e3";
-    ctx.lineWidth = 2.2;
-    ctx.lineCap = "round";
-    ctx.shadowColor = "rgba(0,227,227,.55)";
-    ctx.shadowBlur = 10;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    ctx.beginPath();
-    ctx.setLineDash([5, 6]);
-    for (let x = 0; x <= w; x += 4) {
-      const y = avg(x, phase);
-      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    }
-    ctx.strokeStyle = "#6a6aff";
-    ctx.lineWidth = 1.6;
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    const px = w * 0.78;
-    ctx.beginPath();
-    ctx.arc(px, ema(px, phase), 4.5, 0, Math.PI * 2);
-    ctx.fillStyle = "#ffffff";
-    ctx.strokeStyle = "#00e3e3";
-    ctx.lineWidth = 3;
-    ctx.fill();
-    ctx.stroke();
-  }
-
-  resize();
-  window.addEventListener("resize", () => {
-    resize();
-    if (!motionOK) drawFrame(1.4);
+  // Assign staggered transition-delay within each data-reveal-group
+  const groups = {};
+  elements.forEach((el) => {
+    const group = el.dataset.revealGroup;
+    if (!group) return;
+    if (!groups[group]) groups[group] = [];
+    groups[group].push(el);
   });
 
-  if (!motionOK) {
-    drawFrame(1.4);
-    return;
-  }
-  let phase = 0;
-  (function loop() {
-    phase += 0.016;
-    drawFrame(phase);
-    requestAnimationFrame(loop);
-  })();
+  Object.values(groups).forEach((group) => {
+    group.forEach((el, index) => {
+      el.style.transitionDelay = `${index * 0.1}s`;
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  elements.forEach((el) => observer.observe(el));
+}
+
+/* --------------------------------------------------------------------------
+   initCounters — [data-count] elements count from 0 to their target value
+   once when scrolled into view. Under reduced motion, the final value is
+   shown instantly with no animation.
+   -------------------------------------------------------------------------- */
+function initCounters() {
+  const elements = document.querySelectorAll("[data-count]");
+  if (!elements.length) return;
+
+  const reduceMotion = prefersReducedMotion();
+
+  elements.forEach((el) => {
+    const target = parseInt(el.dataset.count, 10);
+    if (Number.isNaN(target)) return;
+
+    if (reduceMotion) {
+      el.textContent = String(target);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          observer.unobserve(entry.target);
+
+          const duration = 1200;
+          const start = performance.now();
+
+          function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const value = Math.round(progress * target);
+            el.textContent = String(value);
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              el.textContent = String(target);
+            }
+          }
+
+          requestAnimationFrame(tick);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+  });
 }
