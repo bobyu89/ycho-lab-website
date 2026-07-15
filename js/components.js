@@ -262,6 +262,46 @@ function initLayout(activePage, lang) {
       }
     });
   }
+
+  initScrollProgress();
+  initToTop();
+}
+
+/* --------------------------------------------------------------------------
+   Scroll progress — 頂部品牌漸層細條，隨捲動比例伸展
+   -------------------------------------------------------------------------- */
+function initScrollProgress() {
+  const bar = document.createElement("div");
+  bar.className = "scroll-progress";
+  bar.setAttribute("aria-hidden", "true");
+  document.body.append(bar);
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+  };
+  window.addEventListener("scroll", () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener("resize", update, { passive: true });
+  update();
+}
+
+/* --------------------------------------------------------------------------
+   To top — 捲動超過大約一屏後浮現的回頂按鈕
+   -------------------------------------------------------------------------- */
+function initToTop() {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "to-top";
+  btn.setAttribute("aria-label", SITE_LANG === "en" ? "Back to top" : "回到頂部");
+  btn.textContent = "↑";
+  document.body.append(btn);
+  btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  window.addEventListener("scroll", () => {
+    btn.classList.toggle("to-top--show", window.scrollY > window.innerHeight * 0.8);
+  }, { passive: true });
 }
 
 /* --------------------------------------------------------------------------

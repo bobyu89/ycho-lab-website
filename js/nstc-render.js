@@ -69,13 +69,34 @@ function pubItemHtml(p, index, lang) {
         .map((b) => `<span class="chip ${NSTC_CHIP_CLASS[b.type] || ""}">${escapeHtml(t.role[b.text] || b.text)}</span>`)
         .join("")}</span>`
     : "";
+  /* 複製引用小按鈕：純文字書目，hover 論文列時浮現（觸控裝置常駐） */
+  const citation = `${authors} (${year}). ${p.title}.${rawVenue ? ` ${rawVenue}.` : ""}`;
+  const copyLabel = lang === "en" ? "Copy citation" : "複製引用";
+  const copiedLabel = lang === "en" ? "Copied ✓" : "已複製 ✓";
+  const citeBtn = `<button type="button" class="cite-copy" data-cite="${escapeHtml(citation)}"` +
+    ` data-copied="${escapeHtml(copiedLabel)}" aria-label="${escapeHtml(copyLabel)}">${escapeHtml(copyLabel)}</button>`;
   return `<li class="pub-item">
     <span class="pub-item__index">${index}.</span>
-    <p class="pub-item__text">${boldPI(escapeHtml(authors))} (${escapeHtml(year)}). ${escapeHtml(p.title)}.${venue}
+    <p class="pub-item__text">${boldPI(escapeHtml(authors))} (${escapeHtml(year)}). ${escapeHtml(p.title)}.${venue}${citeBtn}
       ${badgeHtml}
     </p>
   </li>`;
 }
+
+/* 複製引用：事件委派一次掛在 document，成功後短暫顯示「已複製」 */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".cite-copy");
+  if (!btn || !navigator.clipboard) return;
+  navigator.clipboard.writeText(btn.dataset.cite).then(() => {
+    if (btn.dataset.origLabel === undefined) btn.dataset.origLabel = btn.textContent;
+    btn.textContent = btn.dataset.copied;
+    btn.classList.add("cite-copy--done");
+    setTimeout(() => {
+      btn.textContent = btn.dataset.origLabel;
+      btn.classList.remove("cite-copy--done");
+    }, 1600);
+  }).catch(() => {});
+});
 
 function renderPublications(journalOl, confOl, data, lang) {
   const pubs = [...data.publications].sort((a, b) => String(b.date).localeCompare(String(a.date)));
