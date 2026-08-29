@@ -9,6 +9,9 @@
    3. 章節標題圖示彈跳（scroll 觸發）
    4. 燈箱開啟縮放淡入
    5. 導覽列進場（每個瀏覽階段一次）
+   6. 閱讀進度與玻璃導覽列狀態
+   7. Glass 卡片光影追蹤
+   8. Hero 插畫呼吸與指標傾斜
 
    anime.js 未載入或使用者偏好減少動態時，全部靜默跳過，網站照常運作。
    ========================================================================== */
@@ -235,12 +238,70 @@
     }
   }
 
+  function initScrollProgress() {
+    var header = document.querySelector(".site-header");
+    var bar = document.getElementById("scroll-progress-bar");
+    if (!header || !bar) return;
+    var ticking = false;
+    function update() {
+      var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      var progress = Math.min(1, Math.max(0, window.scrollY / max));
+      bar.style.transform = "scaleX(" + progress + ")";
+      header.classList.toggle("is-scrolled", window.scrollY > 12);
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
+    update();
+  }
+
+  function initGlassCards() {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    document.querySelectorAll(".card").forEach(function (card) {
+      card.addEventListener("pointermove", function (event) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty("--pointer-x", (event.clientX - rect.left) + "px");
+        card.style.setProperty("--pointer-y", (event.clientY - rect.top) + "px");
+      });
+    });
+  }
+
+  function initHeroGlass() {
+    var wrap = document.querySelector(".hero__art-wrap");
+    var art = document.querySelector(".hero-art");
+    if (art) {
+      animate(art, {
+        y: [0, -11, 0],
+        duration: 6200,
+        loop: true,
+        ease: "inOutSine"
+      });
+    }
+    if (!wrap || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    wrap.addEventListener("pointermove", function (event) {
+      var rect = wrap.getBoundingClientRect();
+      var x = (event.clientX - rect.left) / rect.width - 0.5;
+      var y = (event.clientY - rect.top) / rect.height - 0.5;
+      wrap.style.transform = "rotateX(" + (-y * 7) + "deg) rotateY(" + (x * 9) + "deg) translateY(-3px)";
+    });
+    wrap.addEventListener("pointerleave", function () {
+      wrap.style.transform = "rotateX(0deg) rotateY(0deg) translateY(0)";
+    });
+  }
+
   function boot() {
     initEcgDraw();
     initHeroIntro();
     initIconPop();
     initLightboxPop();
     initNavIntro();
+    initScrollProgress();
+    initGlassCards();
+    initHeroGlass();
   }
 
   if (document.readyState === "loading") {
