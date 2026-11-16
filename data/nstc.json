@@ -1,19 +1,26 @@
 {
-  "lastSync": "2026-11-09",
+  "lastSync": "2026-11-16",
   "publications": [
+    {
+      "date": "2026-11",
+      "type": "期刊論文",
+      "title": "School-level peer digital distraction, mathematics performance, creative thinking, and adolescent well-being across 80 education systems: global evidence from PISA 2022",
+      "authors": "Sung CM, Lin CH, Pan HH, Lin KF, Ho YC",
+      "venue": "Journal of Global Health"
+    },
+    {
+      "date": "2026-10",
+      "type": "期刊論文",
+      "title": "Advancing Elderly- and Dementia-Friendly Care through Innovative Nursing Education: Integrating Flipped Learning and Service-Learning Strategies",
+      "authors": "Yung-Chieh Ching, Yen-Chung Ho, Hui-Jung Hung, Luke Molloy",
+      "venue": "International Journal of Gerontology"
+    },
     {
       "date": "2026-07",
       "type": "研討會論文",
       "title": "AI-Guided Psychodrama Materials for Psychiatric Nursing: Feasibility of AI-Validated Synthetic Cases",
       "authors": "Yen-Chung Ho, Chien Mei Sung",
       "venue": ""
-    },
-    {
-      "date": "2026-02",
-      "type": "期刊論文",
-      "title": "Advancing Elderly and Dementia Friendly Care through Innovative Nursing Education: Integrating Flipped Learning and Service-Learning Strategies",
-      "authors": "Yen-Chung Ho, Hui-Jung Hung, Luke Molloy, Yung-Chieh Ching",
-      "venue": "International Journal of Gerontology"
     },
     {
       "date": "2025-12",
