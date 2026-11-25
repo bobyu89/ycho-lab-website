@@ -24,50 +24,42 @@ const SITE = {
    填入後即自動串接，留空則顯示內建備用資料。設定步驟見 README-維護說明.md
    ========================================================================== */
 const CONFIG = {
-  SHEET_ID: "1vrl5wBdmVocqPfwQlQ3bMlydVw2HgkhKBo7sFgqp8Uw",        // 雲端「網站後台-消息與活動（含英文欄）v3」試算表（最新消息；v2 已停用）
-  EVENTS_SHEET_ID: "1f8JzHwbDItOId105OcyBv4WGbWBAO5NlDOVn8FQk4VQ", // 雲端「網站後台-重要活動」試算表
-  DRIVE_FOLDER_ID: "1Vi93_Xw7oruDRUguRs4q-mFFfYGNtbAD",            // 雲端「實驗室網站/活動照片」資料夾
-  DRIVE_API_KEY: "AIzaSyD6XJELxWdiiCTPNgHiJrT-09n-X6clCYc"         // 限制 referrer：bobyu89.github.io、localhost:8788
+  SHEET_ID: "" /* 最新消息改在 LabSite 編輯器管理；原試算表 1vrl5wBdmVocqPfwQlQ3bMlydVw2HgkhKBo7sFgqp8Uw */,        // 雲端「網站後台-消息與活動（含英文欄）v3」試算表（最新消息；v2 已停用）
+  EVENTS_SHEET_ID: "" /* 重要活動改寫在下方的 FALLBACK_EVENTS；原試算表 1f8JzHwbDItOId105OcyBv4WGbWBAO5NlDOVn8FQk4VQ */, // 雲端「網站後台-重要活動」試算表
+  DRIVE_FOLDER_ID: "",  // 活動照片改在 LabSite「活動相簿」管理（原雲端硬碟資料夾 1Vi93_Xw7oruDRUguRs4q-mFFfYGNtbAD）
+  DRIVE_API_KEY: ""
 };
 
 /* ==========================================================================
    FALLBACK data — shown whenever CONFIG is empty or a fetch/parse fails.
    ========================================================================== */
 const FALLBACK_NEWS = [
+  { date: "2026-08-11", category: "公告", content: "研究生李妍鋅論文計畫口試將於 8 月 11 日（二）11:00–13:00 舉行。", content_en: "Graduate student Yen-Hsin Lee's thesis proposal defense: Tuesday, Aug 11, 11:00–13:00.", link: "" },
+  { date: "2026-08-07", category: "公告", content: "研究生游明勳論文計畫口試將於 8 月 7 日（五）11:00–13:00 舉行。", content_en: "Graduate student Ming-Hsun Yu's thesis proposal defense: Friday, Aug 7, 11:00–13:00.", link: "" },
   { date: "2026-07-16", category: "榮譽", content: "獲國科會補助赴加拿大多倫多參加 37th International Nursing Research Congress 進行口頭報告。", content_en: "Awarded an NSTC grant to deliver an oral presentation at the 37th International Nursing Research Congress in Toronto, Canada.", link: "" },
   { date: "2026-07-11", category: "榮譽", content: "獲國科會「邀請國際科技人士短期訪問」計畫補助，邀請東京科學大學谷口麻希（Taniguchi Maki）教授來台短期訪問。", content_en: "Awarded an NSTC \"Short-Term Visit by International S&T Experts\" grant to host Prof. Maki Taniguchi (Institute of Science Tokyo) for a short-term visit to Taiwan.", link: "" },
   { date: "2026-07-10", category: "榮譽", content: "本實驗室國科會計畫研究成果通過國防醫學大學第 81 次智審會，獲同意補助申請中華民國發明專利。", content_en: "Our NSTC-funded research results passed NDMU's 81st Intellectual Property Review Committee, with approved funding support for filing an R.O.C. (Taiwan) invention patent.", link: "" },
-  { date: "2026-08-11", category: "公告", content: "研究生李妍鋅論文計畫口試將於 8 月 11 日（二）11:00–13:00 舉行。", content_en: "Graduate student Yen-Hsin Lee's thesis proposal defense: Tuesday, Aug 11, 11:00–13:00.", link: "" },
-  { date: "2026-08-07", category: "公告", content: "研究生游明勳論文計畫口試將於 8 月 7 日（五）11:00–13:00 舉行。", content_en: "Graduate student Ming-Hsun Yu's thesis proposal defense: Friday, Aug 7, 11:00–13:00.", link: "" },
-  { date: "2026-07-01", category: "公告", content: "跨裝置失樂感趨勢視覺化平台研究計畫，延續計劃通過。", content_en: "The follow-up grant for the cross-device anhedonia trend visualization platform has been approved.", link: "" },
+  { date: "2026-07-01", category: "公告", content: "跨裝置失樂感趨勢視覺化平台研究計劃，延續計劃通過。", content_en: "The follow-up grant for the cross-device anhedonia trend visualization platform has been approved.", link: "" },
   { date: "2026-01-01", category: "公告", content: "「照護產業科技化指數與指引研究案」（經濟部產業發展署／資策會）正式啟動。", content_en: "The Care Industry Technology Index and Guidelines project (Industrial Development Administration, MOEA / III) has officially launched.", link: "" },
-  { date: "2025-08-01", category: "公告", content: "國科會計畫「基於移動平均理論與生態瞬時評估法之失樂感個人化動態監測系統發展與應用」開始執行。", link: "" },
-  { date: "2025-06-15", category: "發表", content: "跨裝置失樂感趨勢視覺化平台研究計畫書（Part I）刊登於 JMIR Research Protocols。", link: "" },
-  { date: "2025-05-20", category: "發表", content: "AI 虛擬人增強遊戲式教學提升護理學生情緒智能之研究計畫書刊登於 JMIR Research Protocols。", link: "" },
-  { date: "2025-04-01", category: "榮譽", content: "本實驗室國科會計畫延伸研究成果之美國發明專利臨時案通過。", content_en: "A U.S. provisional patent application derived from our NSTC-funded research was successfully filed.", link: "" },
-  { date: "2025-02-10", category: "活動", content: "實驗室成員於 EAFONS 2025 發表體外反搏（EECP）應用於壓力管理之先驅研究。", link: "" },
-  { date: "2024-10-01", category: "發表", content: "癌症病人憂鬱症狀盛行率與相關因素研究刊登於 Current Oncology。", link: "" },
-  { date: "2024-05-01", category: "發表", content: "SHAPS 切分值與預測因子研究（臨床與校園場域比較）刊登於 BJPsych Open。", link: "" }
+  { date: "2025-08-01", category: "公告", content: "國科會計畫「基於移動平均理論與生態瞬時評估法之失樂感個人化動態監測系統發展與應用」開始執行。", content_en: "The NSTC project on personalized dynamic anhedonia monitoring based on moving-average theory and EMA has commenced.", link: "" },
+  { date: "2025-06-15", category: "發表", content: "跨裝置失樂感趨勢視覺化平台研究計畫書（Part I）刊登於 JMIR Research Protocols。", content_en: "Protocol (Part I) for the cross-device anhedonia trend visualization platform published in JMIR Research Protocols.", link: "" },
+  { date: "2025-05-20", category: "發表", content: "AI 虛擬人增強遊戲式教學提升護理學生情緒智能之研究計孏書刊登於 JMIR Research Protocols。", content_en: "Protocol for AI virtual-human-augmented game-based teaching to enhance nursing students' emotional intelligence published in JMIR Research Protocols.", link: "" },
+  { date: "2025-04-01", category: "榮譽", content: "本實驗室國科會計寶延伸研究成果之美國發明專利臨時案通過。", content_en: "A U.S. provisional patent application derived from our NSTC-funded research was successfully filed.", link: "" },
+  { date: "2025-02-10", category: "活動", content: "實驗室成員於 EAFONS 2025 發表體外反搏（EECP）應用於壓力管理之先驅研究。", content_en: "Lab members presented a pilot study of enhanced external counterpulsation (EECP) for stress management at EAFONS 2025.", link: "" },
+  { date: "2024-10-01", category: "發表", content: "癌症病人憂鬱症狀盛行率與相關因素研究刊登於 Current Oncology。", content_en: "Study on the prevalence and correlates of depressive symptoms among patients with cancer published in Current Oncology.", link: "" },
+  { date: "2024-05-01", category: "發表", content: "SHAPS 切分值與預測因子研究（臨床與校園場域比較）刊登於 BJPsych Open。", content_en: "Study on SHAPS cut-off values and predictors (clinical vs. school settings) published in BJPsych Open.", link: "" }
 ];
 
 const FALLBACK_EVENTS = [
-  {
-    date: "2026-01-01",
-    title: "照護產業科技化指數與指引研究案啟動",
-    description: "與經濟部產業發展署／資策會合作，建立照護產業科技化評估指標與推動指引，支援長照與照護服務數位轉型。",
-    image: "",
-    pinned: true
-  },
-  {
-    date: "2026-07-01",
-    title: "國科會失樂感個人化動態監測延續計劃",
-    description: "以精準及預防精神醫學為方向，結合移動平均理論與生態瞬時評估（EMA），發展跨裝置失樂感趨勢視覺化與個人化監測方法。",
-    image: "",
-    pinned: true
-  }
+  { date: "2026-07-01", title: "國科會失樂感個人化動態監測延續計劃", description: "以精準及預防精神醫學為方向、結合移動平均理論與生態瞬時評估（EMA）、發展跨裝置失樂感趨勢視覺化與個人化監測方法。", image: "", pinned: true },
+  { date: "2026-01-01", title: "照護產業科技化指數與指引研究案啟動", description: "與經濟部產業發展署／資策會合作、建立照護產業科技化評估指標與推動指引、支援長照與照護服務數位轉型。", image: "", pinned: true }
 ];
 
-/* 佔位照片 — 尚未串接 Drive 或雲端相簿為空時顯示 */
+/* 活動照片清單 — 在 LabSite 編輯器的「活動相簿」新增、排序、寫說明。
+   照片放在 assets/gallery/；這個清單是空的時候顯示下方的佔位照片。 */
+const LOCAL_PHOTOS = [];
+
+/* 佔位照片 — 活動相簿還沒有照片時顯示 */
 function makePlaceholder(n) {
   const hues = [
     ["#4568C8", "#7668D8"], ["#7668D8", "#4568C8"], ["#2AAE9B", "#4568C8"],
@@ -93,7 +85,7 @@ function makePlaceholder(n) {
 const FALLBACK_PHOTOS = Array.from({ length: 8 }, (_, i) => ({
   src: makePlaceholder(i),
   thumb: makePlaceholder(i),
-  caption: "實驗室活動照片（雲端串接後自動更新）"
+  caption: "實驗室活動照片（在 LabSite 活動相簿加入照片後更新）"
 }));
 
 /* ==========================================================================
@@ -193,26 +185,19 @@ function sortPhotosByCaptionDate(photos) {
   });
 }
 
+/* 活動照片：LabSite「活動相簿」管理的 LOCAL_PHOTOS；空的時候顯示佔位照片。
+   英文頁在 en/ 底下，網站內的照片路徑要先回到上一層。 */
+function localPhotos() {
+  const root = /\/en\//.test(location.pathname) ? "../" : "";
+  const rooted = (src) => (/^(https?:|\/|data:|\.\.\/)/.test(src) ? src : root + src);
+  return LOCAL_PHOTOS.map((p) => ({ src: rooted(p.src), thumb: rooted(p.thumb || p.src), caption: p.caption || "" }));
+}
+
 async function fetchPhotos(limit) {
-  try {
-    if (!CONFIG.DRIVE_FOLDER_ID || !CONFIG.DRIVE_API_KEY) throw new Error("no drive configured");
-    const q = encodeURIComponent(`'${CONFIG.DRIVE_FOLDER_ID}' in parents and mimeType contains 'image/' and trashed = false`);
-    const url = `https://www.googleapis.com/drive/v3/files?q=${q}&orderBy=createdTime desc&pageSize=100&fields=files(id,name)&key=${CONFIG.DRIVE_API_KEY}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`drive http ${res.status}`);
-    const data = await res.json();
-    let photos = (data.files || []).map((f) => ({
-      src: `https://drive.google.com/thumbnail?id=${f.id}&sz=w1600`,
-      thumb: `https://drive.google.com/thumbnail?id=${f.id}&sz=w800`,
-      caption: f.name.replace(/\.[^.]+$/, "")
-    }));
-    if (!photos.length) throw new Error("empty folder");
-    photos = sortPhotosByCaptionDate(photos);
-    if (limit) photos = photos.slice(0, limit);
-    return photos;
-  } catch {
-    return limit ? FALLBACK_PHOTOS.slice(0, limit) : FALLBACK_PHOTOS;
-  }
+  let photos = localPhotos();
+  if (!photos.length) return limit ? FALLBACK_PHOTOS.slice(0, limit) : FALLBACK_PHOTOS;
+  photos = sortPhotosByCaptionDate(photos);
+  return limit ? photos.slice(0, limit) : photos;
 }
 
 /* 國科會研究人才網同步資料（data/nstc.json 由 tools/sync-nstc.ps1 每週自動更新）。

@@ -70,14 +70,18 @@ function pubItemHtml(p, index, lang) {
         .join("")}</span>`
     : "";
   /* 複製引用小按鈕：純文字書目，hover 論文列時浮現（觸控裝置常駐） */
-  const citation = `${authors} (${year}). ${p.title}.${rawVenue ? ` ${rawVenue}.` : ""}`;
+  const doi = extra.doi || p.doi || "";
+  const doiHtml = doi
+    ? ` <a class="doi" href="https://doi.org/${escapeHtml(doi)}" target="_blank" rel="noopener noreferrer">DOI</a>`
+    : "";
+  const citation = `${authors} (${year}). ${p.title}.${rawVenue ? ` ${rawVenue}.` : ""}${doi ? ` https://doi.org/${doi}` : ""}`;
   const copyLabel = lang === "en" ? "Copy citation" : "複製引用";
   const copiedLabel = lang === "en" ? "Copied ✓" : "已複製 ✓";
   const citeBtn = `<button type="button" class="cite-copy" data-cite="${escapeHtml(citation)}"` +
     ` data-copied="${escapeHtml(copiedLabel)}" aria-label="${escapeHtml(copyLabel)}">${escapeHtml(copyLabel)}</button>`;
   return `<li class="pub-item">
     <span class="pub-item__index">${index}.</span>
-    <p class="pub-item__text">${boldPI(escapeHtml(authors))} (${escapeHtml(year)}). ${escapeHtml(p.title)}.${venue}${citeBtn}
+    <p class="pub-item__text">${boldPI(escapeHtml(authors))} (${escapeHtml(year)}). ${escapeHtml(p.title)}.${venue}${doiHtml}${citeBtn}
       ${badgeHtml}
     </p>
   </li>`;

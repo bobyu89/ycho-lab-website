@@ -1,7 +1,7 @@
 /* 手工補充資料（人工維護，改完 push 即上線）：
    - PUB_EXTRAS：論文補充。match 填「該論文標題的一小段獨特文字」（不分大小寫）。
      可補 badges（徽章：rank=排名、role=作者角色、grant=計畫編號）、
-     venue（會議／期刊名稱，國科會沒填時顯示）、authors（作者字串覆寫，國科會資料髒掉時用）。
+     venue（會議／期刊名稱，國科會沒填時顯示）、doi（論文 DOI，例如 "10.1111/nhs.12752"，會顯示可點的 DOI 連結）、authors（作者字串覆寫，國科會資料髒掉時用）。
    - PROJECT_EXTRAS：幫國科會計畫補英文名稱、執行期間與狀態。match 比對計畫名稱；
      若兩個計畫名稱很像，加 year（民國年度）區分。status 填「執行中」會顯示狀態晶片。
    - EXTRA_PROJECTS：國科會以外的計畫（部會、醫院、校內計畫…），手工全欄位維護；
@@ -15,31 +15,31 @@ const PUB_EXTRAS = [
   { match: "Advancing Elderly", badges: [
     { type: "role", text: "第一作者" }
   ]},
-  { match: "Cross-Device Platform", badges: [
+  { match: "Cross-Device Platform", doi: "10.2196/84024", badges: [
     { type: "rank", text: "Scopus 235/668 General Medicine" },
     { type: "role", text: "第一作者・通訊作者" },
     { type: "grant", text: "NSTC 114-2314-B-468-006" }
   ]},
-  { match: "AI Virtual Human", badges: [
+  { match: "AI Virtual Human", doi: "10.2196/80290", badges: [
     { type: "rank", text: "Scopus 235/668 General Medicine" },
     { type: "grant", text: "教育部 PEH1140261" }
   ]},
-  { match: "Prevalence and Correlates", badges: [
+  { match: "Prevalence and Correlates", doi: "10.3390/curroncol31100431", badges: [
     { type: "rank", text: "SCIE 157/322 Oncology" },
     { type: "grant", text: "NSTC 108-2314-B-038-123" }
   ]},
-  { match: "cut-off values", badges: [
+  { match: "cut-off values", doi: "10.1192/bjo.2024.35", badges: [
     { type: "rank", text: "SSCI 35/144 Psychiatry" },
     { type: "role", text: "第一作者" }
   ]},
-  { match: "seclusion and restraint", badges: [
+  { match: "seclusion and restraint", doi: "10.1111/inm.13255", badges: [
     { type: "rank", text: "SSCI 2/123 Nursing" }
   ]},
-  { match: "Identifying differential trajectories", badges: [
+  { match: "Identifying differential trajectories", doi: "10.1002/jad.12161", badges: [
     { type: "rank", text: "SSCI 17/77 Psychology, Developmental" },
     { type: "role", text: "第一作者" }
   ]},
-  { match: "Correlations among life stress", badges: [
+  { match: "Correlations among life stress", doi: "10.1111/nhs.12752", badges: [
     { type: "rank", text: "SSCI 22/123 Nursing" },
     { type: "role", text: "第一作者" }
   ]},

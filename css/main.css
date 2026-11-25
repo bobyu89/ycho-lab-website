@@ -2452,3 +2452,21 @@ body.lightbox-open {
     opacity: 1;
   }
 }
+
+/* 手機選單：頁首的毛玻璃效果會把固定位置的選單困在頁首高度裡，打開選單時先關掉 */
+body.nav-open .site-header {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* 手機：頁首的毛玻璃效果會讓關起來的抽屜選單算進頁面寬度，手機上整頁可以左右晃動；手機版改用不透明底色 */
+@media (max-width: 899px) {
+  .site-header {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(247, 249, 252, 0.97);
+  }
+}
+body {
+  overflow-x: clip;
+}

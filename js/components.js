@@ -54,7 +54,7 @@ const UI_STRINGS = {
     friendLinks: "友好連結",
     friendName: "護理創新及專科訓練研究室",
     friendSub: "宋建美 助理教授",
-    friendHref: "https://bobyu89.github.io/sung-lab-website/",
+    friendHref: "https://labsite-sites.shiftguard-navicare.workers.dev/sung-lab-website/",
     navAria: "開啟導覽選單",
     back: "返回"
   },
@@ -67,7 +67,7 @@ const UI_STRINGS = {
     friendLinks: "Partner Labs",
     friendName: "Nursing Innovation & NP Training Lab",
     friendSub: "Dr. Chien-Mei Sung",
-    friendHref: "https://bobyu89.github.io/sung-lab-website/en/",
+    friendHref: "https://labsite-sites.shiftguard-navicare.workers.dev/sung-lab-website/en/",
     navAria: "Open navigation menu",
     back: "Back"
   }

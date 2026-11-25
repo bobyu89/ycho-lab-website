@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bobyu89.github.io/ycho-lab-website/sitemap.xml
+Sitemap: https://labsite-sites.shiftguard-navicare.workers.dev/ycho-lab-website/sitemap.xml
